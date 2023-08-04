@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<script src="{{ url_for('static', filename='js/core.js') }}"></script>
+
+<html>
+<head>
+    <title>Yahoo Finance Flask App</title>
+</head>
+<body>
+    <h1>Yahoo Finance Flask App</h1>
+    
+    <label for="Country_selector">Select Country: </label>
+    <select id="Country_selector" name="Select_countries" onchange="displayMessage()">
+        <option value="Blank">-</option>
+        <option value="Aus">Australia</option>
+        <option value="US">US</option>
+    </select>
+    <div id="message"></div>
+    
+</body>
+</html>
