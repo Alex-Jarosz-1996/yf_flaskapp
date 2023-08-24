@@ -1,5 +1,7 @@
+import json
 import os
 import pandas as pd
+
 
 def get_all_asx_tickers():
     current_dir = os.path.dirname(__file__)
@@ -7,13 +9,15 @@ def get_all_asx_tickers():
     df = pd.read_csv(csv_file_path)
     return df["ASX code"]
 
+
 def get_all_us_tickers():
     current_dir = os.path.dirname(__file__)
     csv_file_path = os.path.join(current_dir, '../../company_lists/us_companies.csv')
     df = pd.read_csv(csv_file_path)
     return df["Symbol"]
 
-def cleanse_stocklist(stocks: pd.DataFrame):
+
+def cleanse_stocklist(stocks: pd.DataFrame) -> pd.DataFrame:
     for stock in stocks:
         if not isinstance(stock, str):
             stock = str(stock)
@@ -26,3 +30,8 @@ def cleanse_stocklist(stocks: pd.DataFrame):
             pass  # potentially need to do regex checks here
 
     return stocks
+
+
+def jsonify_stocklist(stocks: pd.DataFrame) -> pd.DataFrame:
+    stocks = list(stocks)
+    return json.dumps(stocks, indent=1)
