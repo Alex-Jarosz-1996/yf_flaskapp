@@ -1,16 +1,12 @@
 function updateStocksDropdown() {
-    var country = getSelectedCountry(); // Get the selected country from getSelectedCountry()
+    var country = getSelectedCountry();
     var stockSelector = document.getElementById("Stock_selector");
-    stockSelector.innerHTML = ""; // Clear the stock options
+    stockSelector.innerHTML = "";
 
-    if (country === "Australia") {
-        // Populate stock options for Australia
-        var ausStocks = ["Stock 1", "Stock 2", "Stock 3"];
-        populateStockOptions(ausStocks);
-    } else if (country === "US") {
-        // Populate stock options for US
-        var usStocks = ["Stock A", "Stock B", "Stock C"];
-        populateStockOptions(usStocks);
+    if (country !== "") {
+        fetch('/get_stocks/' + country)
+            .then(response => response.json())
+            .then(data => populateStockOptions(data));
     }
 }
 
