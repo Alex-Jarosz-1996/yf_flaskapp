@@ -12,7 +12,10 @@ function updateStocksDropdown() {
 
 function populateStockOptions(stockArray) {
     var stockSelector = document.getElementById("Stock_selector");
-
+    
+    // Sort the stockArray in alphabetical order
+    stockArray.sort();
+    
     for (var i = 0; i < stockArray.length; i++) {
         var option = document.createElement("option");
         option.value = stockArray[i];
@@ -20,6 +23,7 @@ function populateStockOptions(stockArray) {
         stockSelector.appendChild(option);
     }
 }
+
 
 function getSelectedCountry() {
     var selectElement = document.getElementById("Country_selector");
