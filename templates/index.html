@@ -8,7 +8,7 @@
 <body>
     <h1>Yahoo Finance Flask App</h1>
     
-    <label for="Country_selector">Select Country: </label>
+    <label for="Country_selector">Select Country from dropdown: </label>
     <select id="Country_selector" name="Select_countries" onchange="updateStocksDropdown()">
         <option value="Blank">-</option>
         <option value="Aus">Australia</option>
@@ -16,8 +16,12 @@
     </select>
     <div id="message"></div>
     
-    <label for="Stock_selector">Select Stock: </label>
+    <label for="Stock_selector">Select Stock from all: </label>
     <select id="Stock_selector" name="Select_stocks"></select>
+
+    <label for="Filter_input">Filter Stocks: </label>
+    <input type="text" id="Filter_input" onkeyup="filterStocks()">
+    <div id="filteredStocksDropdown"></div>
     
 </body>
 </html>

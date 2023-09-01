@@ -43,3 +43,36 @@ function getSelectedCountry() {
 
     return country;
 }
+
+
+function filterStocks() {
+    var inputElement = document.getElementById("Filter_input");
+    var filterText = inputElement.value.toUpperCase();
+    var country = getSelectedCountry();
+    
+    if (country !== "") {
+        fetch('/get_stocks/' + country)
+            .then(response => response.json())
+            .then(data => filterStocksDropdown(data, filterText));
+    }
+}
+
+function filterStocksDropdown(stockArray, filterText) {
+    // Sort the stockArray in alphabetical order
+    stockArray.sort();
+
+    var filteredStocks = stockArray.filter(stock => stock.toUpperCase().startsWith(filterText));
+
+    var filteredStocksDropdown = document.getElementById("filteredStocksDropdown");
+    filteredStocksDropdown.innerHTML = "";  // Clear the existing dropdown options
+    
+    var dropdown = document.createElement("select");
+    for (var i = 0; i < filteredStocks.length; i++) {
+        var option = document.createElement("option");
+        option.value = filteredStocks[i];
+        option.text = filteredStocks[i];
+        dropdown.appendChild(option);
+    }
+
+    filteredStocksDropdown.appendChild(dropdown);
+}
