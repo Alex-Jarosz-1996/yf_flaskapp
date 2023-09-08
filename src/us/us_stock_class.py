@@ -1,6 +1,6 @@
 import yfinance as yf
 
-class StockClass:
+class US_StockClass:
     def __init__(self, ticker): 
 
         num_dp = 3

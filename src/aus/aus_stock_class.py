@@ -1,7 +1,7 @@
-from stock_methods import *
+from yf_flaskapp.src.aus.aus_stock_methods import *
 from websites import *
 
-class StockClass:
+class AusStockClass:
     def __init__(self, stock: str):
         # 
         self.ticker = stock 
