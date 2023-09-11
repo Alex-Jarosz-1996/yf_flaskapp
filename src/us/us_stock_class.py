@@ -102,4 +102,4 @@ class US_StockClass:
 
 if __name__ == "__main__":
     stock = US_StockClass("AAPL")
-    print(stock.returnOnAssets)
+    print(stock.price)
