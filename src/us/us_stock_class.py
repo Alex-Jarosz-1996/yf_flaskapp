@@ -13,7 +13,7 @@ class US_StockClass:
         self.ticker          = ticker
         self.price           = float(self.info['currentPrice']) if self.info['currentPrice'] is not None else None
         self.marketCap       = float(self.info['marketCap']) if self.info['marketCap'] is not None else None
-        self.numShares       = float(self.info['sharesOutstanding']) if self.info['sharesOutstanding'] is not None else None
+        self.numSharesAvail  = float(self.info['sharesOutstanding']) if self.info['sharesOutstanding'] is not None else None
         self.yearlyLowPrice  = float(self.info['fiftyTwoWeekLow']) if self.info['fiftyTwoWeekLow'] is not None else None
         self.yearlyHighPrice = float(self.info['fiftyTwoWeekHigh']) if self.info['fiftyTwoWeekHigh'] is not None else None
         self.fiftyDayMA      = float(self.info['fiftyDayAverage']) if self.info['fiftyDayAverage'] is not None else None
@@ -97,9 +97,9 @@ class US_StockClass:
         """
         prints all properties
         """
-        print(', '.join("%s: %s" % item for item in vars(StockClass(f'{self.ticker}')).items()))
+        print(', '.join("%s: %s" % item for item in vars(US_StockClass(f'{self.ticker}')).items()))
 
 
 if __name__ == "__main__":
-    stock = StockClass("AAPL")
+    stock = US_StockClass("AAPL")
     print(stock.returnOnAssets)
