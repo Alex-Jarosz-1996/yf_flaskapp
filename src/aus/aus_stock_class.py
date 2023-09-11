@@ -1,5 +1,5 @@
-from yf_flaskapp.src.aus.aus_stock_methods import *
-from websites import *
+from src.aus.aus_stock_methods import *
+from src.aus.websites import *
 
 class AusStockClass:
     def __init__(self, stock: str):

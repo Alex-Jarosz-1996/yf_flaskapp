@@ -1,6 +1,7 @@
 import os
 
 from src.common.get_tickers import cleansed_asx_stocklist, cleansed_us_stocklist
+from src.aus.aus_stock_class import AusStockClass
 
 from flask import Flask, render_template, request, jsonify
 from flask_sqlalchemy import SQLAlchemy
@@ -51,6 +52,23 @@ def get_stocks(country):
         stock_codes = []
 
     return jsonify(stock_codes)
+
+
+@app.route('/get_stock_info/<stock_code>')
+def get_stock_info(stock_code):
+    # Create an instance of AusStockClass with the selected stock code
+    stock_instance = AusStockClass(stock_code)
+
+    # Return a JSON representation of the stock attributes
+    return jsonify({
+        'price': stock_instance.price,
+        'marketCap': stock_instance.marketCap,
+        'numSharesAvail': stock_instance.numSharesAvail,
+        'yearlyLowPrice': stock_instance.yearlyLowPrice,
+        'yearlyHighPrice': stock_instance.yearlyHighPrice,
+        'fiftyDayMA': stock_instance.fiftyDayMA,
+        'twoHundredDayMA': stock_instance.twoHundredDayMA
+    })
 
 
 if __name__ == '__main__':

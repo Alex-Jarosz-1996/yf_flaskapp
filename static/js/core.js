@@ -76,3 +76,66 @@ function filterStocksDropdown(stockArray, filterText) {
 
     filteredStocksDropdown.appendChild(dropdown);
 }
+
+
+var selectedStocks = [];
+
+function addSelectedStock() {
+    var stockSelector = document.getElementById("Stock_selector");
+    var filterInput = document.getElementById("Filter_input");
+    var selectedValue = stockSelector.value || filterInput.value;
+    var country = getSelectedCountry();
+
+    if (selectedValue !== "") {
+        // Create an object to represent the selected stock
+        var selectedStock = {
+            code: selectedValue,
+            country: country
+        };
+
+        // Create an instance of AusStockClass with the selected stock code
+        fetch('/get_stock_info/' + selectedValue)
+            .then(response => response.json())
+            .then(data => {
+                // Add the selected stock with its attributes to the array
+                selectedStock.stockInfo = data;
+                selectedStocks.push(selectedStock);
+                // Update the table with the selected stocks
+                updateSelectedStocksTable();
+            });
+
+        // Clear the filter input
+        filterInput.value = "";
+        stockSelector.value = "";
+    }
+}
+
+function updateSelectedStocksTable() {
+    var tableBody = document.querySelector("#selectedStocksTable tbody");
+
+    // Clear the table
+    tableBody.innerHTML = "";
+
+    // Add selected stocks to the table
+    for (var i = 0; i < selectedStocks.length; i++) {
+        var row = tableBody.insertRow(i);
+        var cell1 = row.insertCell(0);
+        var cell2 = row.insertCell(1);
+        var cell3 = row.insertCell(2);
+        var cell4 = row.insertCell(3);
+        // Add more cells for other attributes as needed
+
+        cell1.textContent = selectedStocks[i].code;
+        cell2.textContent = selectedStocks[i].country;
+
+        // Access and add the attributes from the stockInfo property
+        if (selectedStocks[i].stockInfo) {
+            cell3.textContent = selectedStocks[i].stockInfo.price;
+            cell4.textContent = selectedStocks[i].stockInfo.marketCap;
+            // Add more cells for other attributes as needed
+        }
+    }
+}
+
+
+

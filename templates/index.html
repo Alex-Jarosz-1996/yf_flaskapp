@@ -24,6 +24,23 @@
         <input type="text" id="Filter_input" onkeyup="filterStocks()">
     </div>
     <div id="filteredStocksDropdown"></div>
+
+        <!-- Add a button to add selected stocks to the table -->
+    <button onclick="addSelectedStock()">Add Selected Stocks to Table</button>
+
+    <!-- Create a table to display selected stocks -->
+    <table id="selectedStocksTable" border="1">
+        <thead>
+            <tr>
+                <th>Stock Code</th>
+                <th>Country</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Selected stocks will be added here -->
+        </tbody>
+    </table>
+
     
 </body>
 </html>
