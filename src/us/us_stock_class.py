@@ -97,8 +97,3 @@ class US_StockClass:
         prints all properties
         """
         print(', '.join("%s: %s" % item for item in vars(US_StockClass(f'{self.ticker}')).items()))
-
-
-if __name__ == "__main__":
-    stock = US_StockClass("AAPL")
-    print(stock.price)
