@@ -8,6 +8,7 @@
 <body>
     <h1>Yahoo Finance Flask App</h1>
     
+    <!-- Country selector -->
     <label for="Country_selector">Select Country from dropdown: </label>
     <select id="Country_selector" name="Select_countries" onchange="updateStocksDropdown()">
         <option value="Blank">-</option>
@@ -16,19 +17,21 @@
     </select>
     <div id="message"></div>
     
+    <!-- All stock selector -->
     <label for="Stock_selector">Select Stock from all: </label>
     <select id="Stock_selector" name="Select_stocks"></select>
 
+    <!-- Filter stock name dynamically -->
     <div>
         <label for="Filter_input">Filter Stocks: </label>
         <input type="text" id="Filter_input" onkeyup="filterStocks()">
     </div>
     <div id="filteredStocksDropdown"></div>
 
-        <!-- Add a button to add selected stocks to the table -->
+    <!-- Add button to add selected stock to table -->
     <button onclick="addSelectedStock()">Add Selected Stocks to Table</button>
 
-    <!-- Create a table to display selected stocks -->
+    <!-- Table to display selected stocks -->
     <table id="selectedStocksTable" border="1">
         <thead>
             <tr>
@@ -37,10 +40,9 @@
             </tr>
         </thead>
         <tbody>
-            <!-- Selected stocks will be added here -->
+            <!-- Stocks added here -->
         </tbody>
     </table>
 
-    
 </body>
 </html>

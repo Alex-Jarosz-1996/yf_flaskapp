@@ -17,6 +17,7 @@ db = SQLAlchemy(app)
 
 # Define the database model
 class StockCode(db.Model):
+    """ DB containing stock name and country """
     id = db.Column(db.Integer, primary_key=True)
     code = db.Column(db.String(20), unique=False, nullable=False)
     market = db.Column(db.String(10), nullable=False)
@@ -26,6 +27,7 @@ class StockCode(db.Model):
         self.market = market
 
 def populate_db():
+    """ Populates stock_scrapper_app with all Aus and US stocks"""
     asx_codes = cleansed_asx_stocklist()
     for code in asx_codes:
         stock = StockCode(code=code, market='AUS')
@@ -40,11 +42,13 @@ def populate_db():
 
 @app.route('/')
 def core():
+    """ Loads core html template when app is run. """
     return render_template("index.html")
 
 
 @app.route('/get_stocks/<country>')
 def get_stocks(country):
+    """ Returns a json object for all stock codes, dependent on the country """
     if country == 'Australia':
         stock_codes = [stock.code for stock in StockCode.query.filter_by(market='AUS')]
     elif country == 'US':
@@ -57,13 +61,12 @@ def get_stocks(country):
 
 @app.route('/get_stock_info/<country>/<stock_code>')
 def get_stock_info(country, stock_code):
-    # Create an instance of AusStockClass with the selected stock code
-    if country == 'Australia':
+    """ Returns a json object of all properties of a stock """
+    if country == "Australia":
         stock_instance = AusStockClass(stock_code)
-    else:
+    else:  # country == "US"
         stock_instance = US_StockClass(stock_code)
 
-    # Return a JSON representation of the stock attributes
     return jsonify({
         'price': stock_instance.price,
         'marketCap': stock_instance.marketCap,

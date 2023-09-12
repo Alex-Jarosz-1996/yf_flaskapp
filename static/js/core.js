@@ -1,4 +1,7 @@
 function updateStocksDropdown() {
+    /*
+    * fetches all stocks, country dependent
+    */
     var country = getSelectedCountry();
     var stockSelector = document.getElementById("Stock_selector");
     stockSelector.innerHTML = "";
@@ -11,6 +14,9 @@ function updateStocksDropdown() {
 }
 
 function populateStockOptions(stockArray) {
+    /*
+    * populates all stocks, country dependent into a dropdown
+    */
     var stockSelector = document.getElementById("Stock_selector");
     
     // Sort the stockArray in alphabetical order
@@ -26,6 +32,9 @@ function populateStockOptions(stockArray) {
 
 
 function getSelectedCountry() {
+    /**
+    * determining which country stocks are to be displayed
+    */
     var selectElement = document.getElementById("Country_selector");
     var selectedValue = selectElement.value;
     var messageElement = document.getElementById("message");
@@ -46,6 +55,9 @@ function getSelectedCountry() {
 
 
 function filterStocks() {
+    /*
+    * filters stocks depending on the country 
+    */
     var inputElement = document.getElementById("Filter_input");
     var filterText = inputElement.value.toUpperCase();
     var country = getSelectedCountry();
@@ -58,6 +70,10 @@ function filterStocks() {
 }
 
 function filterStocksDropdown(stockArray, filterText) {
+    /*
+    * filters stocks in the dropdown dependent on the country
+    */
+    
     // Sort the stockArray in alphabetical order
     stockArray.sort();
 
@@ -81,6 +97,9 @@ function filterStocksDropdown(stockArray, filterText) {
 var selectedStocks = [];
 
 function addSelectedStock() {
+    /*
+    * adds selected stock to the table
+    */
     var stockSelector = document.getElementById("Stock_selector");
     var filterInput = document.getElementById("Filter_input");
     var selectedValue = stockSelector.value || filterInput.value;
@@ -111,6 +130,9 @@ function addSelectedStock() {
 }
 
 function updateSelectedStocksTable() {
+    /*
+    * renders table dynamically
+    */
     var tableBody = document.querySelector("#selectedStocksTable tbody");
 
     // Clear the table
