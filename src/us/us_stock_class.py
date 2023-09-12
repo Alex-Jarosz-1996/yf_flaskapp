@@ -36,11 +36,9 @@ class US_StockClass:
         self.dividendYield = float(self.info['trailingAnnualDividendYield']) if self.info['trailingAnnualDividendYield'] is not None else None
         self.dividendRate  = float(self.info['dividendRate']) if self.info['dividendRate'] is not None else None
         self.exDivDate     = str(self.info['exDividendDate']) if self.info['exDividendDate'] is not None else None
-        self.lastDivVal    = float(self.info['lastDividendValue']) if self.info['lastDividendValue'] is not None else None
         self.payoutRatio   = str(self.info['payoutRatio']) if self.info['payoutRatio'] is not None else None
 
-        # # balance sheet metrics
-        self.bookValue         = round(float(self.info['bookValue']), num_dp) if self.info['bookValue'] is not None else None
+        # balance sheet metrics
         self.bookValPerShare   = round(float(self.info['bookValue'] / self.info['sharesOutstanding']), num_dp) if (self.info['bookValue'] / self.info['sharesOutstanding']) is not None else None
         self.cash              = round(float(self.info['totalCash']), num_dp) if self.info['totalCash'] is not None else None
         self.cashPerShare      = round(float(self.info['totalCashPerShare']), num_dp) if self.info['totalCashPerShare'] is not None else None
@@ -49,16 +47,13 @@ class US_StockClass:
         self.debt              = round(float(self.info['totalDebt']), num_dp) if self.info['totalDebt'] is not None else None
         self.debtToMarketCap   = round(float(self.info['totalDebt'] / self.info['marketCap']), num_dp) if (self.info['totalDebt'] / self.info['marketCap']) is not None else None
         self.debtToEquityRatio = round(float(self.info['debtToEquity']), num_dp) if self.info['debtToEquity'] is not None else None
-        self.quickRatio        = round(float(self.info['quickRatio']), num_dp) if self.info['quickRatio'] is not None else None
         self.returnOnAssets    = round(float(self.info['returnOnAssets']), num_dp) if self.info['returnOnAssets'] is not None else None
         self.returnOnEquity    = round(float(self.info['returnOnEquity']), num_dp) if self.info['returnOnEquity'] is not None else None
 
         # income related
         self.ebitda              = round(float(self.info['ebitda']), num_dp) if self.info['ebitda'] is not None else None
-        self.ebitdaMargins       = round(float(self.info['ebitdaMargins']), num_dp) if self.info['ebitdaMargins'] is not None else None
         self.ebitdaPerShare      = round(float(self.info['ebitda']), num_dp) if self.info['ebitda'] is not None else None
         self.earningsGrowth      = round(float(self.info['earningsGrowth']), num_dp) if self.info['earningsGrowth'] is not None else None
-        self.grossMargins        = round(float(self.info['grossMargins']), num_dp) if self.info['grossMargins'] is not None else None
         self.grossProfit         = round(float(self.info['grossProfits']), num_dp) if self.info['grossProfits'] is not None else None
         self.grossProfitPerShare = round(float(self.info['grossProfits'] / self.info['sharesOutstanding']), num_dp) if (self.info['grossProfits'] / self.info['sharesOutstanding']) is not None else None
         self.netIncome           = round(float(self.info['netIncomeToCommon']), num_dp) if self.info['netIncomeToCommon'] is not None else None
@@ -80,11 +75,14 @@ class US_StockClass:
         self.fcfToEV           = round(float(self.info['freeCashflow'] / self.info['enterpriseValue']), num_dp) if (self.info['freeCashflow'] / self.info['enterpriseValue']) is not None else None
         self.ocfToEV           = round(float(self.info['operatingCashflow'] / self.info['enterpriseValue']), num_dp) if (self.info['operatingCashflow'] / self.info['enterpriseValue']) is not None else None
 
+
     def __repr__(self):
         return self
 
+
     def __str__(self):
         return self 
+
 
     def get_all_keys(self):
         """
@@ -92,6 +90,7 @@ class US_StockClass:
         """
         for i in self.info.keys():
             print(i)
+
 
     def print_all_class_properties(self):
         """

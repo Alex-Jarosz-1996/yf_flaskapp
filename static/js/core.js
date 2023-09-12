@@ -94,7 +94,7 @@ function addSelectedStock() {
         };
 
         // Create an instance of AusStockClass with the selected stock code
-        fetch('/get_stock_info/' + selectedValue)
+        fetch(`/get_stock_info/${country}/${selectedValue}`)
             .then(response => response.json())
             .then(data => {
                 // Add the selected stock with its attributes to the array
