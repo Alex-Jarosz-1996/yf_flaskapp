@@ -1,4 +1,9 @@
 import yfinance as yf
+# from src.us.us_stock_methods import *
+try:
+    from src.us.us_stock_methods import *
+except:
+    from us_stock_methods import *
 
 class US_StockClass:
     def __init__(self, ticker): 
@@ -11,71 +16,133 @@ class US_StockClass:
         
         # stock price metrics
         self.ticker          = ticker
-        self.price           = float(self.info['currentPrice']) if self.info['currentPrice'] is not None else None
-        self.marketCap       = float(self.info['marketCap']) if self.info['marketCap'] is not None else None
-        self.numSharesAvail  = float(self.info['sharesOutstanding']) if self.info['sharesOutstanding'] is not None else None
-        self.yearlyLowPrice  = float(self.info['fiftyTwoWeekLow']) if self.info['fiftyTwoWeekLow'] is not None else None
-        self.yearlyHighPrice = float(self.info['fiftyTwoWeekHigh']) if self.info['fiftyTwoWeekHigh'] is not None else None
-        self.fiftyDayMA      = float(self.info['fiftyDayAverage']) if self.info['fiftyDayAverage'] is not None else None
-        self.twoHundredDayMA = float(self.info['twoHundredDayAverage']) if self.info['twoHundredDayAverage'] is not None else None
+        self.price           = getPrice(self.info)
+        self.marketCap       = getMarketCap(self.info)
+        self.numSharesAvail  = getNumSharesAvail(self.info)
+        self.yearlyLowPrice  = getYearlyLowPrice(self.info)
+        self.yearlyHighPrice = getYearlyHighPrice(self.info)
+        self.fiftyDayMA      = getFiftyDayAverage(self.info)
+        self.twoHundredDayMA = getTwoHundredDayAverage(self.info)
 
         # value metrics
-        self.acquirersMultiple     = round(float(self.info['enterpriseValue'] / self.info['netIncomeToCommon']), num_dp) if (self.info['enterpriseValue'] / self.info['netIncomeToCommon']) is not None else None
-        self.currentRatio          = round(float(self.info['currentRatio']), num_dp) if self.info['currentRatio'] is not None else None
-        self.enterpriseValue       = round(float(self.info['enterpriseValue']), num_dp) if self.info['enterpriseValue'] is not None else None
-        self.eps                   = round(float(self.info['trailingEps']), num_dp) if self.info['trailingEps'] is not None else None
-        self.evToEBITDA            = round(float(self.info['enterpriseToEbitda']), num_dp) if self.info['enterpriseToEbitda'] is not None else None
-        self.evToOperatingCashFlow = round(float(self.info['enterpriseValue'] / self.info['operatingCashflow']), num_dp) if (self.info['enterpriseValue'] / self.info['operatingCashflow']) is not None else None
-        self.evToRev               = round(float(self.info['enterpriseToRevenue']), num_dp) if self.info['enterpriseToRevenue'] is not None else None
-        self.peRatioTrail          = round(float(self.info['trailingPE']), num_dp) if self.info['trailingPE'] is not None else None
-        self.peRatioForward        = round(float(self.info['forwardPE']), num_dp) if self.info['forwardPE'] is not None else None
-        self.priceToSales          = round(float(self.info['priceToSalesTrailing12Months']), num_dp) if self.info['priceToSalesTrailing12Months'] is not None else None
-        self.priceToBook           = round(float(self.info['priceToBook']), num_dp) if self.info['priceToBook'] is not None else None
+        self.acquirersMultiple = getAcquirersMultiple(self.info, num_dp)
+        self.currentRatio      = getCurrentRatio(self.info, num_dp)
+        self.enterpriseValue   = getEnterpriseValue(self.info, num_dp)
+        self.eps               = getEPS(self.info, num_dp)
+        self.evToEBITDA        = getEV_ToEBITDA(self.info, num_dp)
+        self.evToRev           = getEV_ToRevenue(self.info, num_dp)
+        self.peRatioTrail      = getPE_RatioTrail(self.info, num_dp)
+        self.peRatioForward    = getPE_RatioForward(self.info, num_dp)
+        self.priceToSales      = getPriceToSales(self.info, num_dp)
+        self.priceToBook       = getPriceToBook(self.info, num_dp)
 
-        # dividend metrics
-        self.dividendYield = float(self.info['trailingAnnualDividendYield']) if self.info['trailingAnnualDividendYield'] is not None else None
-        self.dividendRate  = float(self.info['dividendRate']) if self.info['dividendRate'] is not None else None
-        self.exDivDate     = str(self.info['exDividendDate']) if self.info['exDividendDate'] is not None else None
-        self.payoutRatio   = str(self.info['payoutRatio']) if self.info['payoutRatio'] is not None else None
+        # # dividend metrics
+        self.dividendYield = getDividendYield(self.info)
+        self.dividendRate  = getDividendRate(self.info)
+        self.exDivDate     = getExDivdate(self.info)
+        self.payoutRatio   = getPayoutRatio(self.info)
 
-        # balance sheet metrics
-        self.bookValPerShare   = round(float(self.info['bookValue'] / self.info['sharesOutstanding']), num_dp) if (self.info['bookValue'] / self.info['sharesOutstanding']) is not None else None
-        self.cash              = round(float(self.info['totalCash']), num_dp) if self.info['totalCash'] is not None else None
-        self.cashPerShare      = round(float(self.info['totalCashPerShare']), num_dp) if self.info['totalCashPerShare'] is not None else None
-        self.cashToMarketCap   = round(float(self.info['totalCash'] / self.info['marketCap']), num_dp) if (self.info['totalCash'] / self.info['marketCap']) is not None else None
-        self.cashToDebt        = round(float(self.info['totalCash'] / self.info['totalDebt']), num_dp) if (self.info['totalCash'] / self.info['totalDebt']) is not None else None
-        self.debt              = round(float(self.info['totalDebt']), num_dp) if self.info['totalDebt'] is not None else None
-        self.debtToMarketCap   = round(float(self.info['totalDebt'] / self.info['marketCap']), num_dp) if (self.info['totalDebt'] / self.info['marketCap']) is not None else None
-        self.debtToEquityRatio = round(float(self.info['debtToEquity']), num_dp) if self.info['debtToEquity'] is not None else None
-        self.returnOnAssets    = round(float(self.info['returnOnAssets']), num_dp) if self.info['returnOnAssets'] is not None else None
-        self.returnOnEquity    = round(float(self.info['returnOnEquity']), num_dp) if self.info['returnOnEquity'] is not None else None
+        # # balance sheet metrics
+        self.bookValPerShare   = getBookValuePerShare(self.info, num_dp)
+        self.cash              = getCash(self.info, num_dp)
+        self.cashPerShare      = getCashPerShare(self.info, num_dp)
+        self.cashToMarketCap   = getCashToMarketCap(self.info, num_dp)
+        self.cashToDebt        = getCashToDebt(self.info, num_dp)
+        self.debt              = getDebt(self.info, num_dp)
+        self.debtToMarketCap   = getDebtToMarketCap(self.info, num_dp)
+        self.debtToEquityRatio = getDebtToEquity(self.info, num_dp)
+        self.returnOnAssets    = getReturnToAssets(self.info, num_dp)
+        self.returnOnEquity    = getReturnToEquity(self.info, num_dp)
 
-        # income related
-        self.ebitda              = round(float(self.info['ebitda']), num_dp) if self.info['ebitda'] is not None else None
-        self.ebitdaPerShare      = round(float(self.info['ebitda']), num_dp) if self.info['ebitda'] is not None else None
-        self.earningsGrowth      = round(float(self.info['earningsGrowth']), num_dp) if self.info['earningsGrowth'] is not None else None
-        self.grossProfit         = round(float(self.info['grossProfits']), num_dp) if self.info['grossProfits'] is not None else None
-        self.grossProfitPerShare = round(float(self.info['grossProfits'] / self.info['sharesOutstanding']), num_dp) if (self.info['grossProfits'] / self.info['sharesOutstanding']) is not None else None
-        self.netIncome           = round(float(self.info['netIncomeToCommon']), num_dp) if self.info['netIncomeToCommon'] is not None else None
-        self.netIncomePerShare   = round(float(self.info['netIncomeToCommon'] / self.info['sharesOutstanding']), num_dp) if (self.info['netIncomeToCommon'] / self.info['sharesOutstanding']) is not None else None
-        self.operatingMargin     = round(float(self.info['operatingMargins']), num_dp) if self.info['operatingMargins'] is not None else None
-        self.profitMargin        = round(float(self.info['profitMargins']), num_dp) if self.info['profitMargins'] is not None else None
-        self.revenue             = round(float(self.info['totalRevenue']), num_dp) if self.info['totalRevenue'] is not None else None
-        self.revenueGrowth       = round(float(self.info['revenueGrowth']), num_dp) if self.info['revenueGrowth'] is not None else None
-        self.revenuePerShare     = round(float(self.info['revenuePerShare'] / self.info['sharesOutstanding']), num_dp) if (self.info['revenuePerShare'] / self.info['sharesOutstanding']) is not None else None
+        # # income related
+        self.ebitda              = getEBITDA(self.info, num_dp)
+        self.ebitdaPerShare      = getEBITDA_PerShare(self.info, num_dp)
+        self.earningsGrowth      = getEarningsGrowth(self.info, num_dp)
+        self.grossProfit         = getGrossProfit(self.info, num_dp)
+        self.grossProfitPerShare = getGrossProfitPerShare(self.info, num_dp)
+        self.netIncome           = getNetIncome(self.info, num_dp)
+        self.netIncomePerShare   = getNetIncomePerShare(self.info, num_dp)
+        self.operatingMargin     = getOperatingMargin(self.info, num_dp)
+        self.profitMargin        = getProfitMargin(self.info, num_dp)
+        self.revenue             = getRevenue(self.info, num_dp)
+        self.revenueGrowth       = getRevenueGrowth(self.info, num_dp)
+        self.revenuePerShare     = getRevenueGrowthPerShare(self.info, num_dp)
 
-        # cash flow related
-        self.fcf               = round(float(self.info['freeCashflow']), num_dp) if self.info['freeCashflow'] is not None else None
-        self.fcfToMarketCap    = round(float(self.info['freeCashflow'] / self.info['marketCap']), num_dp) if (self.info['freeCashflow'] / self.info['marketCap']) is not None else None
-        self.fcfPerShare       = round(float(self.info['freeCashflow'] / self.info['sharesOutstanding']), num_dp) if (self.info['freeCashflow'] / self.info['sharesOutstanding']) is not None else None
-        self.ocf               = round(float(self.info['operatingCashflow']), num_dp) if self.info['operatingCashflow'] is not None else None
-        self.ocfToRevenueRatio = round(float(self.info['operatingCashflow'] / self.info['totalRevenue']), num_dp) if (self.info['operatingCashflow'] / self.info['totalRevenue']) is not None else None
-        self.ocfToMarketCap    = round(float(self.info['operatingCashflow'] / self.info['marketCap']), num_dp) if (self.info['operatingCashflow'] / self.info['marketCap']) is not None else None
-        self.ocfPerShare       = round(float(self.info['operatingCashflow'] / self.info['sharesOutstanding']), num_dp) if (self.info['operatingCashflow'] / self.info['sharesOutstanding']) is not None else None
-        self.fcfToEV           = round(float(self.info['freeCashflow'] / self.info['enterpriseValue']), num_dp) if (self.info['freeCashflow'] / self.info['enterpriseValue']) is not None else None
-        self.ocfToEV           = round(float(self.info['operatingCashflow'] / self.info['enterpriseValue']), num_dp) if (self.info['operatingCashflow'] / self.info['enterpriseValue']) is not None else None
+        # # cash flow related
+        self.fcf               = getFCF(self.info, num_dp)
+        self.fcfToMarketCap    = getFCF_ToMarketCap(self.info, num_dp)
+        self.fcfPerShare       = getFCF_PerShare(self.info, num_dp)
+        self.fcfToEV           = getFCF_ToEV(self.info, num_dp)
+        self.ocf               = getOCF(self.info, num_dp)
+        self.ocfToRevenueRatio = getOCF_ToRevenue(self.info, num_dp)
+        self.ocfToMarketCap    = getOCF_ToMarketCap(self.info, num_dp)
+        self.ocfPerShare       = getOCF_PerShare(self.info, num_dp)
+        self.ocfToEV           = getOCF_ToEV(self.info, num_dp)
+        
 
+    def get_stock_properties(self):
+        properties = {
+            'price': self.price,
+            'marketCap': self.marketCap,
+            'numSharesAvail': self.numSharesAvail,
+            'yearlyLowPrice': self.yearlyLowPrice,
+            'yearlyHighPrice': self.yearlyHighPrice,
+            'fiftyDayMA': self.fiftyDayMA,
+            'twoHundredDayMA': self.twoHundredDayMA,
 
+            'acquirersMultiple': self.acquirersMultiple,
+            'currentRatio': self.currentRatio,
+            'enterpriseValue': self.enterpriseValue,
+            'eps': self.eps,
+            'evToEBITDA': self.evToEBITDA,
+            'evToRev': self.evToRev,
+            'peRatioTrail': self.peRatioTrail,
+            'peRatioForward': self.peRatioForward,
+            'priceToSales': self.priceToSales,
+            'priceToBook': self.priceToBook,
+
+            'dividendYield': self.dividendYield,
+            'dividendRate': self.dividendRate,
+            'exDivDate': self.exDivDate,
+            'payoutRatio': self.payoutRatio,
+
+            'bookValPerShare': self.bookValPerShare,
+            'cash': self.cash,
+            'cashPerShare': self.cashPerShare,
+            'cashToMarketCap': self.cashToMarketCap,
+            'cashToDebt': self.cashToDebt,
+            'debt': self.debt,
+            'debtToMarketCap': self.debtToMarketCap,
+            'debtToEquityRatio': self.debtToEquityRatio,
+            'returnOnAssets': self.returnOnAssets,
+            'returnOnEquity': self.returnOnEquity,
+
+            'ebitda': self.ebitda,
+            'ebitdaPerShare': self.ebitdaPerShare,
+            'earningsGrowth': self.earningsGrowth,
+            'grossProfit': self.grossProfit,
+            'grossProfitPerShare': self.grossProfitPerShare,
+            'netIncome': self.netIncome,
+            'netIncomePerShare': self.netIncomePerShare,
+            'operatingMargin': self.operatingMargin,
+            'profitMargin': self.profitMargin,
+            'revenue': self.revenue,
+            'revenueGrowth': self.revenueGrowth,
+            'revenuePerShare': self.revenuePerShare,
+
+            'fcf': self.fcf,
+            'fcfToMarketCap': self.fcfToMarketCap,
+            'fcfPerShare': self.fcfPerShare,
+            'fcfToEV': self.fcfToEV,
+            'ocf': self.ocf,
+            'ocfToRevenueRatio': self.ocfToRevenueRatio,
+            'ocfToMarketCap': self.ocfToMarketCap,
+            'ocfPerShare': self.ocfPerShare,
+            'ocfToEV': self.ocfToEV
+        }
+        return properties
+    
+    
     def __repr__(self):
         return self
 
@@ -97,3 +164,21 @@ class US_StockClass:
         prints all properties
         """
         print(', '.join("%s: %s" % item for item in vars(US_StockClass(f'{self.ticker}')).items()))
+
+
+    def get_all_properties(self):
+        properties = {}
+
+        for attr_name in dir(self):
+            attr_value = getattr(self, attr_name)
+            if not callable(attr_value) and not attr_name.startswith("__"):
+                properties[attr_name] = attr_value
+
+        return properties
+
+
+if __name__ == "__main__":
+    stock = US_StockClass("AAPL")
+    all_properties = stock.get_all_properties()
+    for prop_name, prop_value in all_properties.items():
+        print(f"{prop_name}: {prop_value}")

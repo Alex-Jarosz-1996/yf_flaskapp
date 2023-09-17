@@ -131,7 +131,7 @@ function addSelectedStock() {
 
 function updateSelectedStocksTable() {
     /*
-    * renders table dynamically
+    * Renders table dynamically
     */
     var tableBody = document.querySelector("#selectedStocksTable tbody");
 
@@ -139,25 +139,82 @@ function updateSelectedStocksTable() {
     tableBody.innerHTML = "";
 
     // Add selected stocks to the table
+    const num_cols = 53;
+
     for (var i = 0; i < selectedStocks.length; i++) {
         var row = tableBody.insertRow(i);
-        var cell1 = row.insertCell(0);
-        var cell2 = row.insertCell(1);
-        var cell3 = row.insertCell(2);
-        var cell4 = row.insertCell(3);
-        // Add more cells for other attributes as needed
 
-        cell1.textContent = selectedStocks[i].code;
-        cell2.textContent = selectedStocks[i].country;
+        // Create an array to store cell references
+        var cellReferences = [];
 
-        // Access and add the attributes from the stockInfo property
+        for (var j = 0; j < num_cols; j++) {
+            var cell = row.insertCell(j);
+            cellReferences.push(cell);
+        }
+
+        // Fill in cell values based on selectedStocks data
+        cellReferences[0].textContent = selectedStocks[i].code;
+        cellReferences[1].textContent = selectedStocks[i].country;
+
         if (selectedStocks[i].stockInfo) {
-            cell3.textContent = selectedStocks[i].stockInfo.price;
-            cell4.textContent = selectedStocks[i].stockInfo.marketCap;
-            // Add more cells for other attributes as needed
+            const stockInfo = selectedStocks[i].stockInfo;
+            cellReferences[2].textContent = stockInfo.price;
+            cellReferences[3].textContent = stockInfo.marketCap;
+            cellReferences[4].textContent = stockInfo.numSharesAvail;
+            cellReferences[5].textContent = stockInfo.yearlyLowPrice;
+            cellReferences[6].textContent = stockInfo.yearlyHighPrice;
+            cellReferences[7].textContent = stockInfo.fiftyDayMA;
+            cellReferences[8].textContent = stockInfo.twoHundredDayMA;
+
+            // cellReferences[9].textContent  = stockInfo.acquirersMultiple;
+            // cellReferences[10].textContent = stockInfo.currentRatio;
+            // cellReferences[11].textContent = stockInfo.enterpriseValue;
+            // cellReferences[12].textContent = stockInfo.eps;
+            // cellReferences[13].textContent = stockInfo.evToEBITDA;
+            // cellReferences[15].textContent = stockInfo.evToRev;
+            // cellReferences[16].textContent = stockInfo.peRatioTrail;
+            // cellReferences[17].textContent = stockInfo.peRatioForward;
+            // cellReferences[18].textContent = stockInfo.priceToSales;
+            // cellReferences[19].textContent = stockInfo.priceToBook;
+
+            // cellReferences[20].textContent = stockInfo.dividendYield;
+            // cellReferences[21].textContent = stockInfo.dividendRate;
+            // cellReferences[22].textContent = stockInfo.exDivDate;
+            // cellReferences[23].textContent = stockInfo.payoutRatio;
+
+            // cellReferences[24].textContent = stockInfo.bookValPerShare;
+            // cellReferences[25].textContent = stockInfo.cash;
+            // cellReferences[26].textContent = stockInfo.cashPerShare;
+            // cellReferences[27].textContent = stockInfo.cashToMarketCap;
+            // cellReferences[28].textContent = stockInfo.cashToDebt;
+            // cellReferences[29].textContent = stockInfo.debt;
+            // cellReferences[30].textContent = stockInfo.debtToMarketCap;
+            // cellReferences[31].textContent = stockInfo.debtToEquityRatio;
+            // cellReferences[32].textContent = stockInfo.returnOnAssets;
+            // cellReferences[33].textContent = stockInfo.returnOnEquity;
+
+            // cellReferences[34].textContent = stockInfo.ebitda;
+            // cellReferences[35].textContent = stockInfo.ebitdaPerShare;
+            // cellReferences[36].textContent = stockInfo.earningsGrowth;
+            // cellReferences[37].textContent = stockInfo.grossProfit;
+            // cellReferences[38].textContent = stockInfo.grossProfitPerShare;
+            // cellReferences[39].textContent = stockInfo.netIncome;
+            // cellReferences[40].textContent = stockInfo.netIncomePerShare;
+            // cellReferences[41].textContent = stockInfo.operatingMargin;
+            // cellReferences[42].textContent = stockInfo.profitMargin;
+            // cellReferences[43].textContent = stockInfo.revenue;
+            // cellReferences[44].textContent = stockInfo.revenueGrowth;
+            // cellReferences[45].textContent = stockInfo.revenuePerShare;
+
+            // cellReferences[46].textContent = stockInfo.fcf;
+            // cellReferences[47].textContent = stockInfo.fcfToMarketCap;
+            // cellReferences[48].textContent = stockInfo.fcfPerShare;
+            // cellReferences[49].textContent = stockInfo.fcfToEV;
+            // cellReferences[50].textContent = stockInfo.ocf;
+            // cellReferences[51].textContent = stockInfo.ocfToRevenueRatio;
+            // cellReferences[52].textContent = stockInfo.ocfToMarketCap;
+            // cellReferences[53].textContent = stockInfo.ocfPerShare;
+            // cellReferences[54].textContent = stockInfo.ocfToEV
         }
     }
 }
-
-
-

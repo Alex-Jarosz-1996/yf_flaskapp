@@ -11,7 +11,7 @@ def protectDivideByZeroError(num, denom, numDP):
     """
     Returns None if either num or denom is eiher 0 or None
     """
-    if num == 0 or num is None or denom == 0 or denom is None:
+    if num in [0, None] or denom in [0, None]:
         return None
     else:
         return round(num / denom, numDP)
@@ -710,7 +710,7 @@ def getRevenueGrowth(yfData):
         return protectPercentageError(val)
 
 
-def getEnterpriseValueToOperatingCashFlow(yfData):
+def getOperatingCashFlowToEnterpriseValue(yfData):
     """
     Returns Enterprise Value To Operating CashFlow as dimensionless number
     ex: Enterprise Value To Operating CashFlow =  10.0
@@ -719,11 +719,11 @@ def getEnterpriseValueToOperatingCashFlow(yfData):
         ev = getEnterpriseValue(yfData)
         ocf = getOperatingCashFlow(yfData)
     except Exception as e:
-        print('Error in getEnterpriseValueToOperatingCashFlow() function')
+        print('Error in getOperatingCashFlowToEnterpriseValue() function')
         print(e)
         return None
     else:
-        return protectDivideByZeroError(ev, ocf, 2) 
+        return protectDivideByZeroError(ocf, ev, 2) 
 
 def getOCF_toRevenueRatio(yfData):
     '''
@@ -783,6 +783,23 @@ def getLeveredFreeCashFlowPerShare(yfData):
         return None
     else:
         return protectDivideByZeroError(lfcf, numShares, 2)
+
+
+def getFreeCashFlowToEnterpriseValue(yfData):
+    """
+    Returns Enterprise Value To Free CashFlow as dimensionless number
+    ex: Enterprise Value To Free CashFlow =  10.0
+    """
+    try:
+        ev = getEnterpriseValue(yfData)
+        lfcf = getLeveredFreeCashFlow(yfData)
+    except Exception as e:
+        print('Error in getFreeCashFlowToEnterpriseValue() function')
+        print(e)
+        return None
+    else:
+        return protectDivideByZeroError(lfcf, ev, 2) 
+
 
 def getOperatingCashFlow(yfData):
     """
