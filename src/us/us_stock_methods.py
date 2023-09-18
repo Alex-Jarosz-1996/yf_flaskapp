@@ -1,3 +1,4 @@
+from datetime import datetime
 from typing import Dict, Optional, Union
 
 
@@ -237,7 +238,9 @@ def getExDivdate(obj: Dict[str, Optional[Union[int, float, str]]]) -> str:
         print(e)
         return None
     else:
-        return str(exDivDate)
+        exDivDate_tstamp = datetime.fromtimestamp(exDivDate)
+        exDivDate_formatted = f"{exDivDate_tstamp.day:02d}/{exDivDate_tstamp.month:02d}/{exDivDate_tstamp.year}"
+        return str(exDivDate_formatted)
     
 
 def getPayoutRatio(obj: Dict[str, Optional[Union[int, float, str]]]) -> str:
