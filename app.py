@@ -70,9 +70,12 @@ def get_stock_info(country, stock_code):
     return jsonify(stock_instance.get_stock_properties())
 
 
-if __name__ == '__main__':
+def main() -> None:
     with app.app_context():
         db.drop_all()
         db.create_all()
         populate_db()
     app.run(debug=True)
+
+if __name__ == '__main__':
+    main()
