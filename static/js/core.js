@@ -139,7 +139,7 @@ function updateSelectedStocksTable() {
     tableBody.innerHTML = "";
 
     // Add selected stocks to the table
-    const num_cols = 53;
+    const num_cols = 54;
 
     for (var i = 0; i < selectedStocks.length; i++) {
         var row = tableBody.insertRow(i);
@@ -214,7 +214,7 @@ function updateSelectedStocksTable() {
             cellReferences[50].textContent = stockInfo.ocfToRevenueRatio;
             cellReferences[51].textContent = stockInfo.ocfToMarketCap;
             cellReferences[52].textContent = stockInfo.ocfPerShare;
-            // cellReferences[53].textContent = stockInfo.ocfToEV;
+            cellReferences[53].textContent = stockInfo.ocfToEV;
         }
     }
 }
