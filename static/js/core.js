@@ -130,91 +130,95 @@ function addSelectedStock() {
 }
 
 function updateSelectedStocksTable() {
-    /*
-    * Renders table dynamically
-    */
-    var tableBody = document.querySelector("#selectedStocksTable tbody");
+    const tableBody = document.querySelector("#selectedStocksTable tbody");
 
     // Clear the table
     tableBody.innerHTML = "";
 
-    // Add selected stocks to the table
-    const num_cols = 54;
+    // Define column information
+    const columns = [
+        { header: "Code", property: "code" },
+        { header: "Country", property: "country" },
 
-    for (var i = 0; i < selectedStocks.length; i++) {
-        var row = tableBody.insertRow(i);
+        { header: "Price", property: "stockInfo.price" },
+        { header: "Market Cap", property: "stockInfo.marketCap" },
+        { header: "Shares Available", property: "stockInfo.numSharesAvail" },
+        { header: "Year Low Price", property: "stockInfo.yearlyLowPrice" },
+        { header: "Year High Price", property: "stockInfo.yearlyHighPrice" },
+        { header: "50 Day MA", property: "stockInfo.fiftyDayMA" },
+        { header: "200 Day MA", property: "stockInfo.twoHundredDayMA" },
 
-        // Create an array to store cell references
-        var cellReferences = [];
+        { header: "Acquirers Multiple", property: "stockInfo.acquirersMultiple" },
+        { header: "Current Ratio", property: "stockInfo.currentRatio" },
+        { header: "Enterprise Value", property: "stockInfo.enterpriseValue" },
+        { header: "EPS", property: "stockInfo.eps" },
+        { header: "EV To EBITDA", property: "stockInfo.evToEBITDA" },
+        { header: "EV To Revenue", property: "stockInfo.evToRev" },
+        { header: "PE Ratio Trailing", property: "stockInfo.peRatioTrail" },
+        { header: "PE Ratio Forward", property: "stockInfo.peRatioForward" },
+        { header: "Price to Sales", property: "stockInfo.priceToSales" },
+        { header: "Price to Book", property: "stockInfo.priceToBook" },
 
-        for (var j = 0; j < num_cols; j++) {
-            var cell = row.insertCell(j);
-            cellReferences.push(cell);
-        }
+        { header: "Dividend Yield", property: "stockInfo.dividendYield" },
+        { header: "Dividend Rate", property: "stockInfo.dividendRate" },
+        { header: "Ex Div Date", property: "stockInfo.exDivDate" },
+        { header: "Payout Ratio", property: "stockInfo.payoutRatio" },
+        
+        { header: "Book Value per Share", property: "stockInfo.bookValPerShare" },
+        { header: "Cash", property: "stockInfo.cash" },
+        { header: "Cash per Share", property: "stockInfo.cashPerShare" },
+        { header: "Cash to Market Cap", property: "stockInfo.cashToMarketCap" },
+        { header: "Cash to Debt", property: "stockInfo.cashToDebt" },
+        { header: "Debt", property: "stockInfo.debt" },
+        { header: "Debt to Market Cap", property: "stockInfo.debtToMarketCap" },
+        { header: "Debt to Equity", property: "stockInfo.debtToEquityRatio" },
+        { header: "Return on Assets", property: "stockInfo.returnOnAssets" },
+        { header: "Return on Equity", property: "stockInfo.returnOnEquity" },
 
-        // Fill in cell values based on selectedStocks data
-        cellReferences[0].textContent = selectedStocks[i].code;
-        cellReferences[1].textContent = selectedStocks[i].country;
+        { header: "EBITDA", property: "stockInfo.ebitda" },
+        { header: "EBITDA Per Share", property: "stockInfo.ebitdaPerShare" },
+        { header: "Earnings Growth", property: "stockInfo.earningsGrowth" },
+        { header: "Gross Profit", property: "stockInfo.grossProfit" },
+        { header: "Gross Profit per Share", property: "stockInfo.grossProfitPerShare" },
+        { header: "Net Income", property: "stockInfo.netIncome" },
+        { header: "Net Income per Share", property: "stockInfo.netIncomePerShare" },
+        { header: "Operating Margin", property: "stockInfo.operatingMargin" },
+        { header: "Profit Margin", property: "stockInfo.profitMargin" },
+        { header: "Revenue", property: "stockInfo.revenue" },
+        { header: "Revenue Growth", property: "stockInfo.revenueGrowth" },
+        { header: "Revenue Per Share", property: "stockInfo.revenuePerShare" },
 
-        if (selectedStocks[i].stockInfo) {
-            const stockInfo = selectedStocks[i].stockInfo;
-            cellReferences[2].textContent = stockInfo.price;
-            cellReferences[3].textContent = stockInfo.marketCap;
-            cellReferences[4].textContent = stockInfo.numSharesAvail;
-            cellReferences[5].textContent = stockInfo.yearlyLowPrice;
-            cellReferences[6].textContent = stockInfo.yearlyHighPrice;
-            cellReferences[7].textContent = stockInfo.fiftyDayMA;
-            cellReferences[8].textContent = stockInfo.twoHundredDayMA;
+        { header: "FCF", property: "stockInfo.fcf" },
+        { header: "FCF to Market Cap", property: "stockInfo.fcfToMarketCap" },
+        { header: "FCF per Share", property: "stockInfo.fcfPerShare" },
+        { header: "FCF to EV", property: "stockInfo.fcfToEV" },
+        { header: "OCF", property: "stockInfo.ocf" },
+        { header: "OCF to Revenue", property: "stockInfo.ocfToRevenueRatio" },
+        { header: "OCF to Market Cap", property: "stockInfo.ocfToMarketCap" },
+        { header: "OCF per Share", property: "stockInfo.ocfPerShare" },
+        { header: "OCF to EV", property: "stockInfo.ocfToEV" }
+    ];
 
-            cellReferences[9].textContent  = stockInfo.acquirersMultiple;
-            cellReferences[10].textContent = stockInfo.currentRatio;
-            cellReferences[11].textContent = stockInfo.enterpriseValue;
-            cellReferences[12].textContent = stockInfo.eps;
-            cellReferences[13].textContent = stockInfo.evToEBITDA;
-            cellReferences[14].textContent = stockInfo.evToRev;
-            cellReferences[15].textContent = stockInfo.peRatioTrail;
-            cellReferences[16].textContent = stockInfo.peRatioForward;
-            cellReferences[17].textContent = stockInfo.priceToSales;
-            cellReferences[18].textContent = stockInfo.priceToBook;
+    for (const stock of selectedStocks) {
+        const row = tableBody.insertRow();
 
-            cellReferences[19].textContent = stockInfo.dividendYield;
-            cellReferences[20].textContent = stockInfo.dividendRate;
-            cellReferences[21].textContent = stockInfo.exDivDate;
-            cellReferences[22].textContent = stockInfo.payoutRatio;
-
-            cellReferences[23].textContent = stockInfo.bookValPerShare;
-            cellReferences[24].textContent = stockInfo.cash;
-            cellReferences[25].textContent = stockInfo.cashPerShare;
-            cellReferences[26].textContent = stockInfo.cashToMarketCap;
-            cellReferences[27].textContent = stockInfo.cashToDebt;
-            cellReferences[28].textContent = stockInfo.debt;
-            cellReferences[29].textContent = stockInfo.debtToMarketCap;
-            cellReferences[30].textContent = stockInfo.debtToEquityRatio;
-            cellReferences[31].textContent = stockInfo.returnOnAssets;
-            cellReferences[32].textContent = stockInfo.returnOnEquity;
-
-            cellReferences[33].textContent = stockInfo.ebitda;
-            cellReferences[34].textContent = stockInfo.ebitdaPerShare;
-            cellReferences[35].textContent = stockInfo.earningsGrowth;
-            cellReferences[36].textContent = stockInfo.grossProfit;
-            cellReferences[37].textContent = stockInfo.grossProfitPerShare;
-            cellReferences[38].textContent = stockInfo.netIncome;
-            cellReferences[39].textContent = stockInfo.netIncomePerShare;
-            cellReferences[40].textContent = stockInfo.operatingMargin;
-            cellReferences[41].textContent = stockInfo.profitMargin;
-            cellReferences[42].textContent = stockInfo.revenue;
-            cellReferences[43].textContent = stockInfo.revenueGrowth;
-            cellReferences[44].textContent = stockInfo.revenuePerShare;
-
-            cellReferences[45].textContent = stockInfo.fcf;
-            cellReferences[46].textContent = stockInfo.fcfToMarketCap;
-            cellReferences[47].textContent = stockInfo.fcfPerShare;
-            cellReferences[48].textContent = stockInfo.fcfToEV;
-            cellReferences[49].textContent = stockInfo.ocf;
-            cellReferences[50].textContent = stockInfo.ocfToRevenueRatio;
-            cellReferences[51].textContent = stockInfo.ocfToMarketCap;
-            cellReferences[52].textContent = stockInfo.ocfPerShare;
-            cellReferences[53].textContent = stockInfo.ocfToEV;
+        for (const column of columns) {
+            const cell = row.insertCell();
+            const cellValue = getValueByProperty(stock, column.property);
+            cell.textContent = cellValue;
         }
     }
+}
+
+// Helper function to retrieve nested property values
+function getValueByProperty(obj, property) {
+    const properties = property.split(".");
+    let value = obj;
+    
+    for (const prop of properties) {
+        value = value[prop];
+        if (value === undefined) break;
+    }
+    
+    return value !== undefined ? value : "";
 }
