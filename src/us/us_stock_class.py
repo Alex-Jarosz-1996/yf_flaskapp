@@ -17,12 +17,12 @@ class US_StockClass:
         # stock price metrics
         self.ticker          = ticker
         self.price           = getPrice(self.info)
-        self.marketCap       = getMarketCap(self.info)
-        self.numSharesAvail  = getNumSharesAvail(self.info)
+        self.marketCap       = getMarketCap(self.info, num_dp)
+        self.numSharesAvail  = getNumSharesAvail(self.info, num_dp)
         self.yearlyLowPrice  = getYearlyLowPrice(self.info)
         self.yearlyHighPrice = getYearlyHighPrice(self.info)
-        self.fiftyDayMA      = getFiftyDayAverage(self.info)
-        self.twoHundredDayMA = getTwoHundredDayAverage(self.info)
+        self.fiftyDayMA      = getFiftyDayAverage(self.info, num_dp)
+        self.twoHundredDayMA = getTwoHundredDayAverage(self.info, num_dp)
 
         # value metrics
         self.acquirersMultiple = getAcquirersMultiple(self.info, num_dp)
@@ -37,10 +37,10 @@ class US_StockClass:
         self.priceToBook       = getPriceToBook(self.info, num_dp)
 
         # # dividend metrics
-        self.dividendYield = getDividendYield(self.info)
-        self.dividendRate  = getDividendRate(self.info)
+        self.dividendYield = getDividendYield(self.info, num_dp)
+        self.dividendRate  = getDividendRate(self.info, num_dp)
         self.exDivDate     = getExDivdate(self.info)
-        self.payoutRatio   = getPayoutRatio(self.info)
+        self.payoutRatio   = getPayoutRatio(self.info, num_dp)
 
         # # balance sheet metrics
         self.bookValPerShare   = getBookValuePerShare(self.info, num_dp)

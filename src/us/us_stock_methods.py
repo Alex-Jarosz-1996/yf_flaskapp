@@ -13,7 +13,7 @@ def getPrice(obj: Dict[str, Optional[Union[int, float, str]]]) -> float:
         return float(price)
 
 
-def getMarketCap(obj: Dict[str, Optional[Union[int, float, str]]]) -> float:
+def getMarketCap(obj: Dict[str, Optional[Union[int, float, str]]], num_dp: int) -> float:
     try:
         mc = obj["marketCap"]
     except Exception as e:
@@ -21,10 +21,10 @@ def getMarketCap(obj: Dict[str, Optional[Union[int, float, str]]]) -> float:
         print(e)
         return None
     else:
-        return float(mc)
+        return round(float(mc) * 10**-6, num_dp)
     
 
-def getNumSharesAvail(obj: Dict[str, Optional[Union[int, float, str]]]) -> float:
+def getNumSharesAvail(obj: Dict[str, Optional[Union[int, float, str]]], num_dp: int) -> float:
     try:
         numShares = obj["sharesOutstanding"]
     except Exception as e:
@@ -32,7 +32,7 @@ def getNumSharesAvail(obj: Dict[str, Optional[Union[int, float, str]]]) -> float
         print(e)
         return None
     else:
-        return float(numShares)
+        return round(float(numShares) * 10**-6, num_dp)
     
 
 def getYearlyLowPrice(obj: Dict[str, Optional[Union[int, float, str]]]) -> float:
@@ -57,7 +57,7 @@ def getYearlyHighPrice(obj: Dict[str, Optional[Union[int, float, str]]]) -> floa
         return float(yhp)
     
 
-def getFiftyDayAverage(obj: Dict[str, Optional[Union[int, float, str]]]) -> float:
+def getFiftyDayAverage(obj: Dict[str, Optional[Union[int, float, str]]], num_dp: int) -> float:
     try:
         fiftyDayAvg = obj["fiftyDayAverage"]
     except Exception as e:
@@ -65,10 +65,10 @@ def getFiftyDayAverage(obj: Dict[str, Optional[Union[int, float, str]]]) -> floa
         print(e)
         return None
     else:
-        return float(fiftyDayAvg)
+        return round(float(fiftyDayAvg), num_dp)
     
 
-def getTwoHundredDayAverage(obj: Dict[str, Optional[Union[int, float, str]]]) -> float:
+def getTwoHundredDayAverage(obj: Dict[str, Optional[Union[int, float, str]]], num_dp: int) -> float:
     try:
         twoHundredDayAvg = obj["twoHundredDayAverage"]
     except Exception as e:
@@ -76,7 +76,7 @@ def getTwoHundredDayAverage(obj: Dict[str, Optional[Union[int, float, str]]]) ->
         print(e)
         return None
     else:
-        return float(twoHundredDayAvg)
+        return round(float(twoHundredDayAvg), num_dp)
     
 
 def getAcquirersMultiple(obj: Dict[str, Optional[Union[int, float, str]]], num_dp: int) -> float:
@@ -118,7 +118,7 @@ def getEnterpriseValue(obj: Dict[str, Optional[Union[int, float, str]]], num_dp:
         print(e)
         return None
     else:
-        return round(float(ev), num_dp)
+        return round(float(ev) * 10**-6, num_dp)
         
 
 def getEPS(obj: Dict[str, Optional[Union[int, float, str]]], num_dp: int) -> float:
@@ -208,7 +208,7 @@ def getPriceToBook(obj: Dict[str, Optional[Union[int, float, str]]], num_dp: int
         return round(float(price2Book), num_dp)
     
 
-def getDividendYield(obj: Dict[str, Optional[Union[int, float, str]]]) -> float:
+def getDividendYield(obj: Dict[str, Optional[Union[int, float, str]]], num_dp: int) -> float:
     try:
         divYield = obj["trailingAnnualDividendYield"]
     except Exception as e:
@@ -216,10 +216,10 @@ def getDividendYield(obj: Dict[str, Optional[Union[int, float, str]]]) -> float:
         print(e)
         return None
     else:
-        return float(divYield)
+        return round(float(divYield), num_dp)
     
 
-def getDividendRate(obj: Dict[str, Optional[Union[int, float, str]]]) -> float:
+def getDividendRate(obj: Dict[str, Optional[Union[int, float, str]]], num_dp: int) -> float:
     try:
         divRate = obj["dividendRate"]
     except Exception as e:
@@ -227,7 +227,7 @@ def getDividendRate(obj: Dict[str, Optional[Union[int, float, str]]]) -> float:
         print(e)
         return None
     else:
-        return float(divRate)
+        return round(float(divRate), num_dp)
     
 
 def getExDivdate(obj: Dict[str, Optional[Union[int, float, str]]]) -> str:
@@ -243,7 +243,7 @@ def getExDivdate(obj: Dict[str, Optional[Union[int, float, str]]]) -> str:
         return str(exDivDate_formatted)
     
 
-def getPayoutRatio(obj: Dict[str, Optional[Union[int, float, str]]]) -> str:
+def getPayoutRatio(obj: Dict[str, Optional[Union[int, float, str]]], num_dp: int) -> str:
     try:
         payoutRatio = obj["payoutRatio"]
     except Exception as e:
@@ -251,7 +251,7 @@ def getPayoutRatio(obj: Dict[str, Optional[Union[int, float, str]]]) -> str:
         print(e)
         return None
     else:
-        return str(payoutRatio)
+        return round(float(payoutRatio), num_dp)
     
 
 def getBookValuePerShare(obj: Dict[str, Optional[Union[int, float, str]]], num_dp: int) -> float:
@@ -276,7 +276,7 @@ def getCash(obj: Dict[str, Optional[Union[int, float, str]]], num_dp: int) -> fl
         print(e)
         return None
     else:
-        return round(float(cash), num_dp)
+        return round(float(cash) * 10**-6, num_dp)
     
 
 def getCashPerShare(obj: Dict[str, Optional[Union[int, float, str]]], num_dp: int) -> float:
@@ -326,7 +326,7 @@ def getDebt(obj: Dict[str, Optional[Union[int, float, str]]], num_dp: int) -> fl
         print(e)
         return None
     else:
-        return round(float(td), num_dp)
+        return round(float(td) * 10**-6, num_dp)
     
 
 def getDebtToMarketCap(obj: Dict[str, Optional[Union[int, float, str]]], num_dp: int) -> float:
@@ -384,7 +384,7 @@ def getEBITDA(obj: Dict[str, Optional[Union[int, float, str]]], num_dp: int) -> 
         print(e)
         return None
     else:
-        return round(float(ebitda), num_dp)
+        return round(float(ebitda) * 10**-6, num_dp)
 
 
 def getEBITDA_PerShare(obj: Dict[str, Optional[Union[int, float, str]]], num_dp: int) -> float:
@@ -420,7 +420,7 @@ def getGrossProfit(obj: Dict[str, Optional[Union[int, float, str]]], num_dp: int
         print(e)
         return None
     else:
-        return round(float(profits), num_dp)
+        return round(float(profits) * 10**-6, num_dp)
     
 
 def getGrossProfitPerShare(obj: Dict[str, Optional[Union[int, float, str]]], num_dp: int) -> float:
@@ -445,7 +445,7 @@ def getNetIncome(obj: Dict[str, Optional[Union[int, float, str]]], num_dp: int) 
         print(e)
         return None
     else:
-        return round(float(ni), num_dp)
+        return round(float(ni) * 10**-6, num_dp)
     
 
 def getNetIncomePerShare(obj: Dict[str, Optional[Union[int, float, str]]], num_dp: int) -> float:
@@ -492,7 +492,7 @@ def getRevenue(obj: Dict[str, Optional[Union[int, float, str]]], num_dp: int) ->
         print(e)
         return None
     else:
-        return round(float(rev), num_dp)
+        return round(float(rev) * 10**-6, num_dp)
     
 
 def getRevenueGrowth(obj: Dict[str, Optional[Union[int, float, str]]], num_dp: int) -> float:
@@ -525,7 +525,7 @@ def getFCF(obj: Dict[str, Optional[Union[int, float, str]]], num_dp: int) -> flo
         print(e)
         return None
     else:
-        return round(float(fcf), num_dp)
+        return round(float(fcf) * 10**-6, num_dp)
     
 
 def getFCF_ToMarketCap(obj: Dict[str, Optional[Union[int, float, str]]], num_dp: int) -> float:
@@ -580,7 +580,7 @@ def getOCF(obj: Dict[str, Optional[Union[int, float, str]]], num_dp: int) -> flo
         print(e)
         return None
     else:
-        return round(float(ocf), num_dp)
+        return round(float(ocf), num_dp) * 10**-6
 
 
 def getOCF_ToRevenue(obj: Dict[str, Optional[Union[int, float, str]]], num_dp: int) -> float:
