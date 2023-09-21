@@ -1,0 +1,43 @@
+/* Container for the table with scrolling */
+.table-container {
+    max-height: 400px; /* Set the maximum height for vertical scrolling */
+    overflow-y: scroll; /* Enable vertical scrolling */
+    position: relative;
+}
+
+/* Freeze the 1st row (header) */
+#selectedStocksTable thead {
+    position: sticky;
+    top: 0;
+    background-color: #fff; /* You can set your desired background color */
+}
+
+/* Freeze the 1st and 2nd columns */
+#selectedStocksTable th:first-child,
+#selectedStocksTable td:first-child,
+#selectedStocksTable th:nth-child(0),
+#selectedStocksTable td:nth-child(0),
+#selectedStocksTable th:nth-child(1),
+#selectedStocksTable td:nth-child(1) {
+    position: sticky;
+    left: 0;
+    background-color: #fff; /* You can set your desired background color */
+}
+
+
+/* Adjust the left padding for the 2nd column */
+#selectedStocksTable th:nth-child(2),
+#selectedStocksTable td:nth-child(2) {
+    padding-left: 20px; /* Adjust as needed */
+}
+
+/* Style for the table */
+#selectedStocksTable {
+    width: 100%; /* Set the table width to 100% */
+    border-collapse: collapse; /* Optional: Remove cell spacing */
+}
+
+/* Add a horizontal scrollbar for the table if needed */
+.table-container {
+    overflow-x: scroll;
+}
