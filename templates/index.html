@@ -34,63 +34,63 @@
 
     <!-- Table to display selected stocks -->
     <div class="table-container">
-        <table id="selectedStocksTable" border="1">
+        <table class="sortable" id="selectedStocksTable" border="1">
             <thead>
                 <tr>
-                    <th>Stock Code</th>
-                    <th>Country</th>
-                    <th>Price ($)</th>
-                    <th>Market Cap ($mil)</th>
-                    <th>Number Available Shares ($mil)</th>
-                    <th>Year Low Price ($)</th>
-                    <th>Year High Price ($)</th>
-                    <th>50 Day MA ($)</th>
-                    <th>200 Day MA ($)</th>
-                    <th>Acquirers Multiple</th>
-                    <th>Current Ratio</th>
-                    <th>Enterprise Value ($mil)</th>
-                    <th>EPS ($)</th>
-                    <th>EV / EBITDA</th>
-                    <th>EV / Revenue</th>
-                    <th>PE Ratio (Trail)</th>
-                    <th>PE Ratio (Forw)</th>
-                    <th>Price / Sales</th>
-                    <th>Price / Book</th>
-                    <th>Dividend Yield (%)</th>
-                    <th>Dividend Rate ($)</th>
-                    <th>ex Dividend Date (D/M/Y)</th>
-                    <th>Payout Ratio (%)</th>
-                    <th>Book Value / Share ($)</th>
-                    <th>Cash ($mil)</th>
-                    <th>Cash / Share ($)</th>
-                    <th>Cash / Market Cap</th>
-                    <th>Cash / Debt</th>
-                    <th>Debt ($mil)</th>
-                    <th>Debt / Market Cap</th>
-                    <th>Debt / Equity (%)</th>
-                    <th>Return on Assets (%)</th>
-                    <th>Return on Equity (%)</th>
-                    <th>EBITDA ($mil)</th>
-                    <th>EBITDA / Share ($)</th>
-                    <th>Earnings Growth (%)</th>
-                    <th>Gross Profit ($mil)</th>
-                    <th>Gross Profit / Share (%)</th>
-                    <th>Net Income ($mil)</th>
-                    <th>Net Income / Share ($)</th>
-                    <th>Operating Margin (%)</th>
-                    <th>Profit Margin (%)</th>
-                    <th>Revenue ($mil)</th>
-                    <th>Revenue Growth (%)</th>
-                    <th>Revenue / Share ($)</th>
-                    <th>FCF ($mil)</th>
-                    <th>FCF / Market Cap</th>
-                    <th>FCF / Share ($)</th>
-                    <th>FCF / EV</th>
-                    <th>OCF ($mil)</th>
-                    <th>OCF / Revenue</th>
-                    <th>OCF / Market Cap</th>
-                    <th>OCF / Share ($)</th>
-                    <th>OCF / EV</th>
+                    <th onclick="sortTable(0)">Stock Code</th>
+                    <th onclick="sortTable(1)">Country</th>
+                    <th onclick="sortTable(2)">Price ($)</th>
+                    <th onclick="sortTable(3)">Market Cap ($mil)</th>
+                    <th onclick="sortTable(4)">Number Available Shares ($mil)</th>
+                    <th onclick="sortTable(5)">Year Low Price ($)</th>
+                    <th onclick="sortTable(6)">Year High Price ($)</th>
+                    <th onclick="sortTable(7)">50 Day MA ($)</th>
+                    <th onclick="sortTable(8)">200 Day MA ($)</th>
+                    <th onclick="sortTable(9)">Acquirers Multiple</th>
+                    <th onclick="sortTable(10)">Current Ratio</th>
+                    <th onclick="sortTable(11)">Enterprise Value ($mil)</th>
+                    <th onclick="sortTable(12)">EPS ($)</th>
+                    <th onclick="sortTable(13)">EV / EBITDA</th>
+                    <th onclick="sortTable(14)">EV / Revenue</th>
+                    <th onclick="sortTable(15)">PE Ratio (Trail)</th>
+                    <th onclick="sortTable(16)">PE Ratio (Forw)</th>
+                    <th onclick="sortTable(17)">Price / Sales</th>
+                    <th onclick="sortTable(18)">Price / Book</th>
+                    <th onclick="sortTable(19)">Dividend Yield (%)</th>
+                    <th onclick="sortTable(20)">Dividend Rate ($)</th>
+                    <th onclick="sortTable(20)">ex Dividend Date (D/M/Y)</th>
+                    <th onclick="sortTable(21)">Payout Ratio (%)</th>
+                    <th onclick="sortTable(22)">Book Value / Share ($)</th>
+                    <th onclick="sortTable(23)">Cash ($mil)</th>
+                    <th onclick="sortTable(24)">Cash / Share ($)</th>
+                    <th onclick="sortTable(25)">Cash / Market Cap</th>
+                    <th onclick="sortTable(26)">Cash / Debt</th>
+                    <th onclick="sortTable(27)">Debt ($mil)</th>
+                    <th onclick="sortTable(28)">Debt / Market Cap</th>
+                    <th onclick="sortTable(29)">Debt / Equity (%)</th>
+                    <th onclick="sortTable(30)">Return on Assets (%)</th>
+                    <th onclick="sortTable(31)">Return on Equity (%)</th>
+                    <th onclick="sortTable(32)">EBITDA ($mil)</th>
+                    <th onclick="sortTable(33)">EBITDA / Share ($)</th>
+                    <th onclick="sortTable(34)">Earnings Growth (%)</th>
+                    <th onclick="sortTable(35)">Gross Profit ($mil)</th>
+                    <th onclick="sortTable(36)">Gross Profit / Share (%)</th>
+                    <th onclick="sortTable(37)">Net Income ($mil)</th>
+                    <th onclick="sortTable(38)">Net Income / Share ($)</th>
+                    <th onclick="sortTable(39)">Operating Margin (%)</th>
+                    <th onclick="sortTable(40)">Profit Margin (%)</th>
+                    <th onclick="sortTable(41)">Revenue ($mil)</th>
+                    <th onclick="sortTable(42)">Revenue Growth (%)</th>
+                    <th onclick="sortTable(43)">Revenue / Share ($)</th>
+                    <th onclick="sortTable(44)">FCF ($mil)</th>
+                    <th onclick="sortTable(45)">FCF / Market Cap</th>
+                    <th onclick="sortTable(46)">FCF / Share ($)</th>
+                    <th onclick="sortTable(47)">FCF / EV</th>
+                    <th onclick="sortTable(48)">OCF ($mil)</th>
+                    <th onclick="sortTable(49)">OCF / Revenue</th>
+                    <th onclick="sortTable(50)">OCF / Market Cap</th>
+                    <th onclick="sortTable(51)">OCF / Share ($)</th>
+                    <th onclick="sortTable(52)">OCF / EV</th>
                 </tr>
             </thead>
             <tbody>
