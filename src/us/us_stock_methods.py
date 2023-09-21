@@ -580,7 +580,7 @@ def getOCF(obj: Dict[str, Optional[Union[int, float, str]]], num_dp: int) -> flo
         print(e)
         return None
     else:
-        return round(float(ocf), num_dp) * 10**-6
+        return round(float(ocf) * 10**-6, num_dp)
 
 
 def getOCF_ToRevenue(obj: Dict[str, Optional[Union[int, float, str]]], num_dp: int) -> float:
