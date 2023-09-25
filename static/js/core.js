@@ -41,10 +41,10 @@ function getSelectedCountry() {
     var country = "";
 
     if (selectedValue === "Aus") {
-        messageElement.textContent = "You selected Australia.";
+        // messageElement.textContent = "You selected Australia.";
         country = "Australia";
     } else if (selectedValue === "US") {
-        messageElement.textContent = "You selected US.";
+        // messageElement.textContent = "You selected US.";
         country = "US";
     } else {
         messageElement.textContent = ""; // Clear the message if no option is selected
