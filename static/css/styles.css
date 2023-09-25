@@ -10,20 +10,21 @@
     position: sticky;
     top: 0;
     background-color: #fff; /* You can set your desired background color */
+    z-index: 2; /* Add z-index to appear above other elements */
 }
 
 /* Freeze the 1st and 2nd columns */
 #selectedStocksTable th:first-child,
 #selectedStocksTable td:first-child,
-#selectedStocksTable th:nth-child(0),
-#selectedStocksTable td:nth-child(0),
 #selectedStocksTable th:nth-child(1),
-#selectedStocksTable td:nth-child(1) {
+#selectedStocksTable td:nth-child(1),
+#selectedStocksTable th:nth-child(2),
+#selectedStocksTable td:nth-child(2) {
     position: sticky;
     left: 0;
     background-color: #fff; /* You can set your desired background color */
+    z-index: 1; /* Add z-index to appear above other columns */
 }
-
 
 /* Adjust the left padding for the 2nd column */
 #selectedStocksTable th:nth-child(2),
@@ -40,4 +41,61 @@
 /* Add a horizontal scrollbar for the table if needed */
 .table-container {
     overflow-x: scroll;
+}
+
+/* Basic styling for the page */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f5f5f5;
+    margin: 0;
+    padding: 0;
+}
+
+h1 {
+    text-align: center;
+    background-color: #007BFF;
+    color: #fff;
+    padding: 20px;
+}
+
+/* Styling for the form elements */
+label {
+    font-weight: bold;
+    margin-right: 10px;
+}
+
+select {
+    padding: 5px;
+    margin-bottom: 10px;
+}
+
+input[type="text"] {
+    padding: 5px;
+}
+
+/* Styling for the filtered stocks dropdown */
+#filteredStocksDropdown {
+    max-height: 100px;
+    overflow-y: auto;
+    border: 1px solid #ccc;
+    padding: 5px;
+    background-color: #fff;
+}
+
+/* Message style */
+#message {
+    color: red;
+}
+
+/* Add button style */
+button {
+    background-color: #007BFF;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0056b3;
 }
