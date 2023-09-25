@@ -1,11 +1,12 @@
 # Yahoo Finance Australia/US Stock Screener
 This project allows the user to screen Australian and US stocks.
 The user can compare Australian or US stocks on over 50 different metrics.
-(Full list of metrics are found in the stock_metrics.md file)
+(Full list of metrics are found in the stock_metrics.txt file)
 
 
 ## Use me
 The app can either be used via the command line, or through the RunApp.bat file:
+
 ### Command line terminal
 Enter the following command into a bash terminal:
 ```
