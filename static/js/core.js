@@ -130,6 +130,9 @@ function addSelectedStock() {
 }
 
 function updateSelectedStocksTable() {
+    /*
+    Populates in the stock table all data for a given stock
+    */
     const tableBody = document.querySelector("#selectedStocksTable tbody");
 
     // Clear the table
@@ -210,8 +213,11 @@ function updateSelectedStocksTable() {
     }
 }
 
-// Helper function to retrieve nested property values
+
 function getValueByProperty(obj, property) {
+    /*
+    Retries property value of a given property
+    */
     const properties = property.split(".");
     let value = obj;
     
@@ -225,6 +231,9 @@ function getValueByProperty(obj, property) {
 
 
 function sortTable(n) {
+    /*
+    Allows ascending and descending toggling functionality
+    */
     var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
     table = document.getElementById("selectedStocksTable");
     switching = true;
