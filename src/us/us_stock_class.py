@@ -1,11 +1,12 @@
 import yfinance as yf
-# from src.us.us_stock_methods import *
-try:
-    from src.us.us_stock_methods import *
-except:
-    from us_stock_methods import *
+from src.us.us_stock_methods import *
+
 
 class US_StockClass:
+    """
+    Class for US only stocks
+    """
+
     def __init__(self, ticker): 
 
         num_dp = 3
@@ -81,6 +82,9 @@ class US_StockClass:
         
 
     def get_stock_properties(self):
+        """
+        Returns all a dict type of all stock class properties
+        """
         properties = {
             'price': self.price,
             'marketCap': self.marketCap,
@@ -167,6 +171,9 @@ class US_StockClass:
 
 
     def get_all_properties(self):
+        """
+        Returns all properties.
+        """
         properties = {}
 
         for attr_name in dir(self):
@@ -175,10 +182,3 @@ class US_StockClass:
                 properties[attr_name] = attr_value
 
         return properties
-
-
-if __name__ == "__main__":
-    stock = US_StockClass("AAPL")
-    all_properties = stock.get_all_properties()
-    for prop_name, prop_value in all_properties.items():
-        print(f"{prop_name}: {prop_value}")
