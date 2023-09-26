@@ -2,9 +2,15 @@ import re
 
 
 def protectNanOrNone(value):
+    """
+    Allows return value of None if N/A or nan is present
+    """
     return None if str(value) in {'N/A', 'nan'} or value is None else value
 
 def regexCheck(value):
+    """
+    Checks if any punctuation is present in return result
+    """
     return None if protectNanOrNone(value) is None else re.sub('[,%]', '', str(value))
 
 def protectDivideByZeroError(num, denom, numDP):
@@ -17,6 +23,10 @@ def protectDivideByZeroError(num, denom, numDP):
         return round(num / denom, numDP)
 
 def protectPercentageError(val):
+    """
+    Uses regexCheck() function to protect against percentage punctuation
+    in return value.
+    """
     value = regexCheck(val)
     return None if value is None else float(value)
 

@@ -1,14 +1,11 @@
-# from src.aus.aus_stock_methods import *
-# from src.aus.websites import *
+from src.aus.aus_stock_methods import *
+from src.aus.websites import *
 
-try:
-    from src.aus.aus_stock_methods import *
-    from src.aus.websites import *
-except:
-    from aus_stock_methods import *
-    from websites import *
 
 class AusStockClass:
+    """
+    Class for Australian only stocks
+    """
     def __init__(self, stock: str):
         # setting up the below metrics
         self.ticker = stock 
@@ -81,6 +78,9 @@ class AusStockClass:
 
 
     def get_stock_properties(self):
+        """
+        Returns all a dict type of all stock class properties
+        """
         properties = {
             'price': self.price,
             'marketCap': self.marketCap,
@@ -152,6 +152,9 @@ class AusStockClass:
 
     
     def get_all_properties(self):
+        """
+        Returns all properties.
+        """
         properties = {}
 
         for attr_name in dir(self):
@@ -160,10 +163,3 @@ class AusStockClass:
                 properties[attr_name] = attr_value
 
         return properties
-    
-
-if __name__ == "__main__":
-    stock = AusStockClass("FMG")
-    all_properties = stock.get_all_properties()
-    for prop_name, prop_value in all_properties.items():
-        print(f"{prop_name}: {prop_value}")
