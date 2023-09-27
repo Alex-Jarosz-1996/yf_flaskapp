@@ -3,6 +3,10 @@ from typing import Dict, Optional, Union
 
 
 def getPrice(obj: Dict[str, Optional[Union[int, float, str]]]) -> float:
+    """
+    Returns share price (in $)
+    ex: price = $50.0
+    """
     try:
         price = obj["currentPrice"]
     except Exception as e:
@@ -14,6 +18,10 @@ def getPrice(obj: Dict[str, Optional[Union[int, float, str]]]) -> float:
 
 
 def getMarketCap(obj: Dict[str, Optional[Union[int, float, str]]], num_dp: int) -> float:
+    """
+    Returns Cash To Market Cap as dimensionless number
+    ex: Cash To Market Cap = 3
+    """
     try:
         mc = obj["marketCap"]
     except Exception as e:
@@ -25,6 +33,10 @@ def getMarketCap(obj: Dict[str, Optional[Union[int, float, str]]], num_dp: int) 
     
 
 def getNumSharesAvail(obj: Dict[str, Optional[Union[int, float, str]]], num_dp: int) -> float:
+    """
+    Returns total number of shares outstanding for the stock
+    ex: Num Shares Available = 25 million
+    """
     try:
         numShares = obj["sharesOutstanding"]
     except Exception as e:
@@ -36,6 +48,10 @@ def getNumSharesAvail(obj: Dict[str, Optional[Union[int, float, str]]], num_dp: 
     
 
 def getYearlyLowPrice(obj: Dict[str, Optional[Union[int, float, str]]]) -> float:
+    """
+    Returns 52 week low price in $
+    ex: 52 week low price = $50.0
+    """
     try:
         ylp = obj["fiftyTwoWeekLow"]
     except Exception as e:
@@ -47,6 +63,10 @@ def getYearlyLowPrice(obj: Dict[str, Optional[Union[int, float, str]]]) -> float
     
 
 def getYearlyHighPrice(obj: Dict[str, Optional[Union[int, float, str]]]) -> float:
+    """
+    Returns 52 week high price in $
+    ex: 52 week high price = $50.0
+    """
     try:
         yhp = obj["fiftyTwoWeekHigh"]
     except Exception as e:
@@ -58,6 +78,10 @@ def getYearlyHighPrice(obj: Dict[str, Optional[Union[int, float, str]]]) -> floa
     
 
 def getFiftyDayAverage(obj: Dict[str, Optional[Union[int, float, str]]], num_dp: int) -> float:
+    """
+    Returns 50 Day Moving Average in $
+    ex: 50 Day Moving Average = $50.0
+    """
     try:
         fiftyDayAvg = obj["fiftyDayAverage"]
     except Exception as e:
@@ -69,6 +93,10 @@ def getFiftyDayAverage(obj: Dict[str, Optional[Union[int, float, str]]], num_dp:
     
 
 def getTwoHundredDayAverage(obj: Dict[str, Optional[Union[int, float, str]]], num_dp: int) -> float:
+    """
+    Returns 200 Day Moving Average in $
+    ex: 200 Day Moving Average = $50.0
+    """
     try:
         twoHundredDayAvg = obj["twoHundredDayAverage"]
     except Exception as e:
@@ -80,6 +108,10 @@ def getTwoHundredDayAverage(obj: Dict[str, Optional[Union[int, float, str]]], nu
     
 
 def getAcquirersMultiple(obj: Dict[str, Optional[Union[int, float, str]]], num_dp: int) -> float:
+    """
+    Returns Acquirers Multiple as $ million
+    ex: Acquirers Multiple = $ 50.0 million
+    """
     try:
         mc = obj["marketCap"]
         td = obj["totalDebt"]
@@ -96,6 +128,10 @@ def getAcquirersMultiple(obj: Dict[str, Optional[Union[int, float, str]]], num_d
 
 
 def getCurrentRatio(obj: Dict[str, Optional[Union[int, float, str]]], num_dp: int) -> float:
+    """
+    Returns current ratio as a dimensionless number
+    ex: current ratio = 2.5
+    """
     try:
         cr = obj["currentRatio"]
     except Exception as e:
@@ -107,6 +143,10 @@ def getCurrentRatio(obj: Dict[str, Optional[Union[int, float, str]]], num_dp: in
         
 
 def getEnterpriseValue(obj: Dict[str, Optional[Union[int, float, str]]], num_dp: int) -> float:
+    """
+    Returns Enterprise Value as $ million
+    ex: Enterprise Value = $ 100.00 million
+    """
     try:
         mc = obj["marketCap"]
         td = obj["totalDebt"]
@@ -122,6 +162,10 @@ def getEnterpriseValue(obj: Dict[str, Optional[Union[int, float, str]]], num_dp:
         
 
 def getEPS(obj: Dict[str, Optional[Union[int, float, str]]], num_dp: int) -> float:
+    """
+    Returns EPS as $
+    ex: EPS = $15.0
+    """
     try:
         eps = obj["trailingEps"]
     except Exception as e:
@@ -133,6 +177,10 @@ def getEPS(obj: Dict[str, Optional[Union[int, float, str]]], num_dp: int) -> flo
     
 
 def getEV_ToEBITDA(obj: Dict[str, Optional[Union[int, float, str]]], num_dp: int) -> float:
+    """
+    Returns EV/EBITDA ratio as a dimensionless number
+    ex: EV/EBITDA = 10.0
+    """
     try:
         mc  = obj["marketCap"]
         td  = obj["totalDebt"]
@@ -149,6 +197,10 @@ def getEV_ToEBITDA(obj: Dict[str, Optional[Union[int, float, str]]], num_dp: int
     
 
 def getEV_ToRevenue(obj: Dict[str, Optional[Union[int, float, str]]], num_dp: int) -> float:
+    """
+    Returns EV/Revenue ratio as a dimensionless number
+    ex: EV/Revenue = 10.0
+    """
     try:
         mc  = obj["marketCap"]
         td  = obj["totalDebt"]
@@ -165,6 +217,10 @@ def getEV_ToRevenue(obj: Dict[str, Optional[Union[int, float, str]]], num_dp: in
     
 
 def getPE_RatioTrail(obj: Dict[str, Optional[Union[int, float, str]]], num_dp: int) -> float:
+    """
+    Returns trailing price/earnings ratio as a dimensionless number
+    ex: (trailing) pe = 10.0
+    """
     try:
         peTrail = obj["trailingPE"]
     except Exception as e:
@@ -176,6 +232,10 @@ def getPE_RatioTrail(obj: Dict[str, Optional[Union[int, float, str]]], num_dp: i
     
 
 def getPE_RatioForward(obj: Dict[str, Optional[Union[int, float, str]]], num_dp: int) -> float:
+    """
+    Returns forward price/earnings ratio as a dimensionless number
+    ex: (forward) pe = 10.0
+    """
     try:
         peForward = obj["forwardPE"]
     except Exception as e:
@@ -187,6 +247,10 @@ def getPE_RatioForward(obj: Dict[str, Optional[Union[int, float, str]]], num_dp:
     
 
 def getPriceToSales(obj: Dict[str, Optional[Union[int, float, str]]], num_dp: int) -> float:
+    """
+    Returns price/sales ratio as a dimensionless number
+    ex: price/sales = 10.0
+    """
     try:
         price2Sales = obj["priceToSalesTrailing12Months"]
     except Exception as e:
@@ -198,6 +262,10 @@ def getPriceToSales(obj: Dict[str, Optional[Union[int, float, str]]], num_dp: in
     
 
 def getPriceToBook(obj: Dict[str, Optional[Union[int, float, str]]], num_dp: int) -> float:
+    """
+    Returns price/book ratio as a dimensionless number
+    ex: price/book = 10.0
+    """
     try:
         price2Book = obj["priceToBook"]
     except Exception as e:
@@ -209,6 +277,10 @@ def getPriceToBook(obj: Dict[str, Optional[Union[int, float, str]]], num_dp: int
     
 
 def getDividendYield(obj: Dict[str, Optional[Union[int, float, str]]], num_dp: int) -> float:
+    """
+    Returns dividend yield as %
+    ex: dividend yield = 10.0 %
+    """
     try:
         divYield = obj["trailingAnnualDividendYield"]
     except Exception as e:
@@ -220,6 +292,10 @@ def getDividendYield(obj: Dict[str, Optional[Union[int, float, str]]], num_dp: i
     
 
 def getDividendRate(obj: Dict[str, Optional[Union[int, float, str]]], num_dp: int) -> float:
+    """
+    Returns trailing dividend rate as $
+    ex: trailing dividend rate = $10.0 
+    """
     try:
         divRate = obj["dividendRate"]
     except Exception as e:
@@ -231,6 +307,10 @@ def getDividendRate(obj: Dict[str, Optional[Union[int, float, str]]], num_dp: in
     
 
 def getExDivdate(obj: Dict[str, Optional[Union[int, float, str]]]) -> str:
+    """
+    Returns Ex Dividend Date as string
+    ex: Ex Dividend Date = 28 Feb 2022 
+    """
     try:
         exDivDate = obj["exDividendDate"]
     except Exception as e:
@@ -244,6 +324,10 @@ def getExDivdate(obj: Dict[str, Optional[Union[int, float, str]]]) -> str:
     
 
 def getPayoutRatio(obj: Dict[str, Optional[Union[int, float, str]]], num_dp: int) -> str:
+    """
+    Returns payout ratio as %
+    ex: payout ratio = 75.0 %
+    """
     try:
         payoutRatio = obj["payoutRatio"]
     except Exception as e:
@@ -255,6 +339,10 @@ def getPayoutRatio(obj: Dict[str, Optional[Union[int, float, str]]], num_dp: int
     
 
 def getBookValuePerShare(obj: Dict[str, Optional[Union[int, float, str]]], num_dp: int) -> float:
+    """
+    Returns Book value per share as a dimensionless number
+    ex: Book value per share = 2.5
+    """
     try:
         bv = obj["bookValue"]
         ns = obj["sharesOutstanding"]
@@ -269,6 +357,10 @@ def getBookValuePerShare(obj: Dict[str, Optional[Union[int, float, str]]], num_d
     
 
 def getCash(obj: Dict[str, Optional[Union[int, float, str]]], num_dp: int) -> float:
+    """
+    Returns available cash as $ million
+    ex: cash = $100.0 million
+    """
     try:
         cash = obj["totalCash"]
     except Exception as e:
@@ -280,6 +372,10 @@ def getCash(obj: Dict[str, Optional[Union[int, float, str]]], num_dp: int) -> fl
     
 
 def getCashPerShare(obj: Dict[str, Optional[Union[int, float, str]]], num_dp: int) -> float:
+    """
+    Returns Cash per share as a $
+    ex: Cash per share = 2.5
+    """
     try:
         cashPerShare = obj["totalCashPerShare"]
     except Exception as e:
@@ -291,6 +387,10 @@ def getCashPerShare(obj: Dict[str, Optional[Union[int, float, str]]], num_dp: in
     
 
 def getCashToMarketCap(obj: Dict[str, Optional[Union[int, float, str]]], num_dp: int) -> float:
+    """
+    Returns Cash To Market Cap as dimensionless number
+    ex: Cash To Market Cap = 3
+    """
     try:
         tc = obj["totalCash"]
         mc = obj["marketCap"]
@@ -305,6 +405,10 @@ def getCashToMarketCap(obj: Dict[str, Optional[Union[int, float, str]]], num_dp:
     
 
 def getCashToDebt(obj: Dict[str, Optional[Union[int, float, str]]], num_dp: int) -> float:
+    """
+    Returns Cash to Debt as dimensionless number
+    ex: Cash to Debt = 3
+    """
     try:
         tc = obj["totalCash"]
         td = obj["totalDebt"]
@@ -319,6 +423,10 @@ def getCashToDebt(obj: Dict[str, Optional[Union[int, float, str]]], num_dp: int)
     
 
 def getDebt(obj: Dict[str, Optional[Union[int, float, str]]], num_dp: int) -> float:
+    """
+    Returns debt as $ million
+    ex: debt = $100.0 million
+    """
     try:
         td = obj["totalDebt"]
     except Exception as e:
@@ -330,6 +438,10 @@ def getDebt(obj: Dict[str, Optional[Union[int, float, str]]], num_dp: int) -> fl
     
 
 def getDebtToMarketCap(obj: Dict[str, Optional[Union[int, float, str]]], num_dp: int) -> float:
+    """
+    Returns Debt To Market Cap as dimensionless number
+    ex: Debt To Market Cap = 3
+    """
     try:
         td = obj["totalDebt"]
         mc = obj["marketCap"]
@@ -344,6 +456,10 @@ def getDebtToMarketCap(obj: Dict[str, Optional[Union[int, float, str]]], num_dp:
     
 
 def getDebtToEquity(obj: Dict[str, Optional[Union[int, float, str]]], num_dp: int) -> float:
+    """
+    Returns debt to equity ratio as dimensinless number
+    ex: debt/equity = 0.5
+    """
     try:
         de = obj["debtToEquity"]
     except Exception as e:
@@ -355,6 +471,10 @@ def getDebtToEquity(obj: Dict[str, Optional[Union[int, float, str]]], num_dp: in
     
 
 def getReturnToAssets(obj: Dict[str, Optional[Union[int, float, str]]], num_dp: int) -> float:
+    """
+    Returns return on assets as %
+    ex: return on assets = 10.0 %
+    """
     try:
         roa = obj["returnOnAssets"]
     except Exception as e:
@@ -366,6 +486,10 @@ def getReturnToAssets(obj: Dict[str, Optional[Union[int, float, str]]], num_dp: 
     
 
 def getReturnToEquity(obj: Dict[str, Optional[Union[int, float, str]]], num_dp: int) -> float:
+    """
+    Returns return on equity as %
+    ex: return on equity = 10.0 %
+    """
     try:
         roe = obj["returnOnEquity"]
     except Exception as e:
@@ -377,6 +501,10 @@ def getReturnToEquity(obj: Dict[str, Optional[Union[int, float, str]]], num_dp: 
     
 
 def getEBITDA(obj: Dict[str, Optional[Union[int, float, str]]], num_dp: int) -> float:
+    """
+    Returns gross profit as $ million ($M)
+    ex: gross profit = $100.0 million
+    """
     try:
         ebitda = obj["ebitda"]
     except Exception as e:
@@ -388,6 +516,10 @@ def getEBITDA(obj: Dict[str, Optional[Union[int, float, str]]], num_dp: int) -> 
 
 
 def getEBITDA_PerShare(obj: Dict[str, Optional[Union[int, float, str]]], num_dp: int) -> float:
+    """
+    Returns EBITDA on a per share basis in $ / share
+    Ex: EBITDA per Share = $5 / share
+    """
     try:
         ebitda = obj["ebitda"]
         numShares = obj["sharesOutstanding"]
@@ -402,6 +534,10 @@ def getEBITDA_PerShare(obj: Dict[str, Optional[Union[int, float, str]]], num_dp:
     
 
 def getEarningsGrowth(obj: Dict[str, Optional[Union[int, float, str]]], num_dp: int) -> float:
+    """
+    Returns earnings growth as %
+    ex: earnings growth = 15.0%
+    """
     try:
         eg = obj["earningsGrowth"]
     except Exception as e:
@@ -413,6 +549,10 @@ def getEarningsGrowth(obj: Dict[str, Optional[Union[int, float, str]]], num_dp: 
     
 
 def getGrossProfit(obj: Dict[str, Optional[Union[int, float, str]]], num_dp: int) -> float:
+    """
+    Returns gross profit as $ million ($M)
+    ex: gross profit = $100.0 million
+    """
     try:
         profits = obj["grossProfits"]
     except Exception as e:
@@ -424,6 +564,10 @@ def getGrossProfit(obj: Dict[str, Optional[Union[int, float, str]]], num_dp: int
     
 
 def getGrossProfitPerShare(obj: Dict[str, Optional[Union[int, float, str]]], num_dp: int) -> float:
+    """
+    Returns gross profit per share as $ / share
+    ex: gross profit = $5 / share
+    """
     try:
         profits = obj["grossProfits"]
         ns      = obj["sharesOutstanding"]
@@ -438,6 +582,10 @@ def getGrossProfitPerShare(obj: Dict[str, Optional[Union[int, float, str]]], num
     
 
 def getNetIncome(obj: Dict[str, Optional[Union[int, float, str]]], num_dp: int) -> float:
+    """
+    Returns Net Income as $ million ($M)
+    ex: Net Income = $100.0 million
+    """
     try:
         ni = obj["netIncomeToCommon"]
     except Exception as e:
@@ -449,6 +597,10 @@ def getNetIncome(obj: Dict[str, Optional[Union[int, float, str]]], num_dp: int) 
     
 
 def getNetIncomePerShare(obj: Dict[str, Optional[Union[int, float, str]]], num_dp: int) -> float:
+    """
+    Returns Net Income PerShare as $ / share
+    ex: Net Income PerShare = $5 / share
+    """
     try:
         ni = obj["netIncomeToCommon"]
         ns = obj["sharesOutstanding"]
@@ -463,6 +615,10 @@ def getNetIncomePerShare(obj: Dict[str, Optional[Union[int, float, str]]], num_d
     
 
 def getOperatingMargin(obj: Dict[str, Optional[Union[int, float, str]]], num_dp: int) -> float:
+    """
+    Returns operating margin as %
+    ex: operating margin = 50.0 %
+    """
     try:
         om = obj["operatingMargins"]
     except Exception as e:
@@ -474,6 +630,10 @@ def getOperatingMargin(obj: Dict[str, Optional[Union[int, float, str]]], num_dp:
     
 
 def getProfitMargin(obj: Dict[str, Optional[Union[int, float, str]]], num_dp: int) -> float:
+    """
+    Returns profit margin as %
+    ex: profit margin = 50.0 %
+    """
     try:
         pm = obj["profitMargins"]
     except Exception as e:
@@ -485,6 +645,10 @@ def getProfitMargin(obj: Dict[str, Optional[Union[int, float, str]]], num_dp: in
     
 
 def getRevenue(obj: Dict[str, Optional[Union[int, float, str]]], num_dp: int) -> float:
+    """
+    Returns Revenue as $ million ($M)
+    ex: Revenue = $100.0 million
+    """
     try:
         rev = obj["totalRevenue"]
     except Exception as e:
@@ -496,6 +660,10 @@ def getRevenue(obj: Dict[str, Optional[Union[int, float, str]]], num_dp: int) ->
     
 
 def getRevenueGrowth(obj: Dict[str, Optional[Union[int, float, str]]], num_dp: int) -> float:
+    """
+    Returns revenue growth as %
+    ex: revenue growth = 15.0%
+    """
     try:
         revGrowth = obj["revenueGrowth"]
     except Exception as e:
@@ -507,6 +675,10 @@ def getRevenueGrowth(obj: Dict[str, Optional[Union[int, float, str]]], num_dp: i
     
 
 def getRevenueGrowthPerShare(obj: Dict[str, Optional[Union[int, float, str]]], num_dp: int) -> float:
+    """
+    Returns revenue growth as %
+    ex: revenue growth = 15.0%
+    """
     try:
         rgs = obj["revenuePerShare"]
     except Exception as e:
@@ -518,6 +690,10 @@ def getRevenueGrowthPerShare(obj: Dict[str, Optional[Union[int, float, str]]], n
     
 
 def getFCF(obj: Dict[str, Optional[Union[int, float, str]]], num_dp: int) -> float:
+    """
+    Returns free cash flow as $ million
+    ex: free cash flow = $ 100 million
+    """
     try:
         fcf = obj["freeCashflow"]
     except Exception as e:
@@ -529,6 +705,10 @@ def getFCF(obj: Dict[str, Optional[Union[int, float, str]]], num_dp: int) -> flo
     
 
 def getFCF_ToMarketCap(obj: Dict[str, Optional[Union[int, float, str]]], num_dp: int) -> float:
+    """
+    Returns Free Cash Flow To Market Cap as dimensionless number
+    ex: Free Cash Flow To Market Cap = 3
+    """
     try:
         fcf = obj["freeCashflow"]
         mc  = obj["marketCap"]
@@ -543,6 +723,10 @@ def getFCF_ToMarketCap(obj: Dict[str, Optional[Union[int, float, str]]], num_dp:
     
 
 def getFCF_PerShare(obj: Dict[str, Optional[Union[int, float, str]]], num_dp: int) -> float:
+    """
+    Returns Free CashFlow PerShare as $ / share
+    ex: Free CashFlow PerShare = $5 / share
+    """
     try:
         fcf = obj["freeCashflow"]
         ns  = obj["sharesOutstanding"]
@@ -557,6 +741,10 @@ def getFCF_PerShare(obj: Dict[str, Optional[Union[int, float, str]]], num_dp: in
     
 
 def getFCF_ToEV(obj: Dict[str, Optional[Union[int, float, str]]], num_dp: int) -> float:
+    """
+    Returns Enterprise Value To Free CashFlow as dimensionless number
+    ex: Enterprise Value To Free CashFlow =  10.0
+    """
     try:
         fcf = obj["freeCashflow"]
         mc = obj["marketCap"]
@@ -573,6 +761,10 @@ def getFCF_ToEV(obj: Dict[str, Optional[Union[int, float, str]]], num_dp: int) -
     
 
 def getOCF(obj: Dict[str, Optional[Union[int, float, str]]], num_dp: int) -> float:
+    """
+    Returns operating cash flow as $ million
+    ex: operating cash flow = $ 100 million
+    """
     try:
         ocf = obj["operatingCashflow"]
     except Exception as e:
@@ -584,6 +776,10 @@ def getOCF(obj: Dict[str, Optional[Union[int, float, str]]], num_dp: int) -> flo
 
 
 def getOCF_ToRevenue(obj: Dict[str, Optional[Union[int, float, str]]], num_dp: int) -> float:
+    '''
+    Returns FCF to Revenue as dimensionless number
+    ex: FCF / Revenue = 5
+    '''
     try:
         ocf = obj["operatingCashflow"]
         rev = obj["totalRevenue"]
@@ -598,6 +794,10 @@ def getOCF_ToRevenue(obj: Dict[str, Optional[Union[int, float, str]]], num_dp: i
 
 
 def getOCF_ToMarketCap(obj: Dict[str, Optional[Union[int, float, str]]], num_dp: int) -> float:
+    """
+    Returns Operating Cash Flow To Market Cap as dimensionless number
+    ex: Operating Cash Flow To Market Cap = 3
+    """
     try:
         ocf = obj["operatingCashflow"]
         mc  = obj["marketCap"]
@@ -612,6 +812,10 @@ def getOCF_ToMarketCap(obj: Dict[str, Optional[Union[int, float, str]]], num_dp:
 
 
 def getOCF_PerShare(obj: Dict[str, Optional[Union[int, float, str]]], num_dp: int) -> float:
+    """
+    Returns Operating CashFlow PerShare as $ / share
+    ex: Operating CashFlow PerShare = $5 / share
+    """
     try:
         ocf = obj["operatingCashflow"]
         ns  = obj["sharesOutstanding"]
@@ -626,6 +830,10 @@ def getOCF_PerShare(obj: Dict[str, Optional[Union[int, float, str]]], num_dp: in
 
 
 def getOCF_ToEV(obj: Dict[str, Optional[Union[int, float, str]]], num_dp: int) -> float:
+    """
+    Returns Operating CashFlow to Enterprise Value as dimensionless number
+    ex: Operating CashFlow to Enterprise Value =  10.0
+    """
     try:
         ocf = obj["operatingCashflow"]
         mc = obj["marketCap"]
